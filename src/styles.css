@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-river-50: #f0f7f2;
+  --color-river-100: #dcefe1;
+  --color-river-200: #bbdec6;
+  --color-river-300: #8ec5a1;
+  --color-river-400: #5da679;
+  --color-river-500: #3c8a5e;
+  --color-river-600: #2b6e49;
+  --color-river-700: #1a472a;
+  --color-river-800: #163822;
+  --color-river-900: #122f1d;
+
+  --color-forge-50: #fdf4ef;
+  --color-forge-100: #f9e4d8;
+  --color-forge-200: #f2c5b0;
+  --color-forge-300: #e8a07e;
+  --color-forge-400: #d97a52;
+  --color-forge-500: #c45c1a;
+  --color-forge-600: #a84d16;
+  --color-forge-700: #8c4013;
+  --color-forge-800: #733610;
+  --color-forge-900: #5c2d0e;
+
+  --color-stone-50: #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-stone-50 text-stone-800 antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f5f5f4;
+}
+::-webkit-scrollbar-thumb {
+  background: #a8a29e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #78716c;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(196, 92, 26, 0.2);
+}

@@ -1,0 +1,48 @@
+export const colors = {
+  river: {
+    50: '#f0f7f2',
+    100: '#dcefe1',
+    200: '#bbdec6',
+    300: '#8ec5a1',
+    400: '#5da679',
+    500: '#3c8a5e',
+    600: '#2b6e49',
+    700: '#1a472a',
+    800: '#163822',
+    900: '#122f1d',
+  },
+  forge: {
+    50: '#fdf4ef',
+    100: '#f9e4d8',
+    200: '#f2c5b0',
+    300: '#e8a07e',
+    400: '#d97a52',
+    500: '#c45c1a',
+    600: '#a84d16',
+    700: '#8c4013',
+    800: '#733610',
+    900: '#5c2d0e',
+  },
+  stone: {
+    50: '#fafaf9',
+    100: '#f5f5f4',
+    200: '#e7e5e4',
+    300: '#d6d3d1',
+    400: '#a8a29e',
+    500: '#78716c',
+    600: '#57534e',
+    700: '#44403c',
+    800: '#292524',
+    900: '#1c1917',
+  },
+} as const
+
+export const brand = {
+  primary: colors.river[700],
+  secondary: colors.forge[500],
+  accent: colors.stone[500],
+  background: colors.stone[50],
+  text: colors.stone[800],
+  textLight: colors.stone[500],
+  textInverse: colors.stone[50],
+}
