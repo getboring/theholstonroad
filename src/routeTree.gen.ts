@@ -15,12 +15,15 @@ import { Route as EventsRouteImport } from './routes/events'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SitesIndexRouteImport } from './routes/sites/index'
+import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as SitesSlugRouteImport } from './routes/sites/$slug'
-import { Route as ChaptersTheStateRouteImport } from './routes/chapters/the-state'
-import { Route as ChaptersTheRoadRouteImport } from './routes/chapters/the-road'
-import { Route as ChaptersTheRiverRouteImport } from './routes/chapters/the-river'
-import { Route as ChaptersTheMarchRouteImport } from './routes/chapters/the-march'
-import { Route as ChaptersTheAgreementRouteImport } from './routes/chapters/the-agreement'
+import { Route as GuidesSlugRouteImport } from './routes/guides/$slug'
+import { Route as ChaptersTheSoundRouteImport } from './routes/chapters/the-sound'
+import { Route as ChaptersTheSessionsRouteImport } from './routes/chapters/the-sessions'
+import { Route as ChaptersTheRailroadRouteImport } from './routes/chapters/the-railroad'
+import { Route as ChaptersTheNextGenerationRouteImport } from './routes/chapters/the-next-generation'
+import { Route as ChaptersTheFestivalRouteImport } from './routes/chapters/the-festival'
+import { Route as ApiSubscribeRouteImport } from './routes/api/subscribe'
 
 const TheTrailRoute = TheTrailRouteImport.update({
   id: '/the-trail',
@@ -52,34 +55,50 @@ const SitesIndexRoute = SitesIndexRouteImport.update({
   path: '/sites/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitesSlugRoute = SitesSlugRouteImport.update({
   id: '/sites/$slug',
   path: '/sites/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChaptersTheStateRoute = ChaptersTheStateRouteImport.update({
-  id: '/chapters/the-state',
-  path: '/chapters/the-state',
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChaptersTheRoadRoute = ChaptersTheRoadRouteImport.update({
-  id: '/chapters/the-road',
-  path: '/chapters/the-road',
+const ChaptersTheSoundRoute = ChaptersTheSoundRouteImport.update({
+  id: '/chapters/the-sound',
+  path: '/chapters/the-sound',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChaptersTheRiverRoute = ChaptersTheRiverRouteImport.update({
-  id: '/chapters/the-river',
-  path: '/chapters/the-river',
+const ChaptersTheSessionsRoute = ChaptersTheSessionsRouteImport.update({
+  id: '/chapters/the-sessions',
+  path: '/chapters/the-sessions',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChaptersTheMarchRoute = ChaptersTheMarchRouteImport.update({
-  id: '/chapters/the-march',
-  path: '/chapters/the-march',
+const ChaptersTheRailroadRoute = ChaptersTheRailroadRouteImport.update({
+  id: '/chapters/the-railroad',
+  path: '/chapters/the-railroad',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ChaptersTheAgreementRoute = ChaptersTheAgreementRouteImport.update({
-  id: '/chapters/the-agreement',
-  path: '/chapters/the-agreement',
+const ChaptersTheNextGenerationRoute =
+  ChaptersTheNextGenerationRouteImport.update({
+    id: '/chapters/the-next-generation',
+    path: '/chapters/the-next-generation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ChaptersTheFestivalRoute = ChaptersTheFestivalRouteImport.update({
+  id: '/chapters/the-festival',
+  path: '/chapters/the-festival',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSubscribeRoute = ApiSubscribeRouteImport.update({
+  id: '/api/subscribe',
+  path: '/api/subscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -89,12 +108,15 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/stories': typeof StoriesRoute
   '/the-trail': typeof TheTrailRoute
-  '/chapters/the-agreement': typeof ChaptersTheAgreementRoute
-  '/chapters/the-march': typeof ChaptersTheMarchRoute
-  '/chapters/the-river': typeof ChaptersTheRiverRoute
-  '/chapters/the-road': typeof ChaptersTheRoadRoute
-  '/chapters/the-state': typeof ChaptersTheStateRoute
+  '/api/subscribe': typeof ApiSubscribeRoute
+  '/chapters/the-festival': typeof ChaptersTheFestivalRoute
+  '/chapters/the-next-generation': typeof ChaptersTheNextGenerationRoute
+  '/chapters/the-railroad': typeof ChaptersTheRailroadRoute
+  '/chapters/the-sessions': typeof ChaptersTheSessionsRoute
+  '/chapters/the-sound': typeof ChaptersTheSoundRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/sites/$slug': typeof SitesSlugRoute
+  '/guides/': typeof GuidesIndexRoute
   '/sites/': typeof SitesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -103,12 +125,15 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/stories': typeof StoriesRoute
   '/the-trail': typeof TheTrailRoute
-  '/chapters/the-agreement': typeof ChaptersTheAgreementRoute
-  '/chapters/the-march': typeof ChaptersTheMarchRoute
-  '/chapters/the-river': typeof ChaptersTheRiverRoute
-  '/chapters/the-road': typeof ChaptersTheRoadRoute
-  '/chapters/the-state': typeof ChaptersTheStateRoute
+  '/api/subscribe': typeof ApiSubscribeRoute
+  '/chapters/the-festival': typeof ChaptersTheFestivalRoute
+  '/chapters/the-next-generation': typeof ChaptersTheNextGenerationRoute
+  '/chapters/the-railroad': typeof ChaptersTheRailroadRoute
+  '/chapters/the-sessions': typeof ChaptersTheSessionsRoute
+  '/chapters/the-sound': typeof ChaptersTheSoundRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/sites/$slug': typeof SitesSlugRoute
+  '/guides': typeof GuidesIndexRoute
   '/sites': typeof SitesIndexRoute
 }
 export interface FileRoutesById {
@@ -118,12 +143,15 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/stories': typeof StoriesRoute
   '/the-trail': typeof TheTrailRoute
-  '/chapters/the-agreement': typeof ChaptersTheAgreementRoute
-  '/chapters/the-march': typeof ChaptersTheMarchRoute
-  '/chapters/the-river': typeof ChaptersTheRiverRoute
-  '/chapters/the-road': typeof ChaptersTheRoadRoute
-  '/chapters/the-state': typeof ChaptersTheStateRoute
+  '/api/subscribe': typeof ApiSubscribeRoute
+  '/chapters/the-festival': typeof ChaptersTheFestivalRoute
+  '/chapters/the-next-generation': typeof ChaptersTheNextGenerationRoute
+  '/chapters/the-railroad': typeof ChaptersTheRailroadRoute
+  '/chapters/the-sessions': typeof ChaptersTheSessionsRoute
+  '/chapters/the-sound': typeof ChaptersTheSoundRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/sites/$slug': typeof SitesSlugRoute
+  '/guides/': typeof GuidesIndexRoute
   '/sites/': typeof SitesIndexRoute
 }
 export interface FileRouteTypes {
@@ -134,12 +162,15 @@ export interface FileRouteTypes {
     | '/events'
     | '/stories'
     | '/the-trail'
-    | '/chapters/the-agreement'
-    | '/chapters/the-march'
-    | '/chapters/the-river'
-    | '/chapters/the-road'
-    | '/chapters/the-state'
+    | '/api/subscribe'
+    | '/chapters/the-festival'
+    | '/chapters/the-next-generation'
+    | '/chapters/the-railroad'
+    | '/chapters/the-sessions'
+    | '/chapters/the-sound'
+    | '/guides/$slug'
     | '/sites/$slug'
+    | '/guides/'
     | '/sites/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -148,12 +179,15 @@ export interface FileRouteTypes {
     | '/events'
     | '/stories'
     | '/the-trail'
-    | '/chapters/the-agreement'
-    | '/chapters/the-march'
-    | '/chapters/the-river'
-    | '/chapters/the-road'
-    | '/chapters/the-state'
+    | '/api/subscribe'
+    | '/chapters/the-festival'
+    | '/chapters/the-next-generation'
+    | '/chapters/the-railroad'
+    | '/chapters/the-sessions'
+    | '/chapters/the-sound'
+    | '/guides/$slug'
     | '/sites/$slug'
+    | '/guides'
     | '/sites'
   id:
     | '__root__'
@@ -162,12 +196,15 @@ export interface FileRouteTypes {
     | '/events'
     | '/stories'
     | '/the-trail'
-    | '/chapters/the-agreement'
-    | '/chapters/the-march'
-    | '/chapters/the-river'
-    | '/chapters/the-road'
-    | '/chapters/the-state'
+    | '/api/subscribe'
+    | '/chapters/the-festival'
+    | '/chapters/the-next-generation'
+    | '/chapters/the-railroad'
+    | '/chapters/the-sessions'
+    | '/chapters/the-sound'
+    | '/guides/$slug'
     | '/sites/$slug'
+    | '/guides/'
     | '/sites/'
   fileRoutesById: FileRoutesById
 }
@@ -177,12 +214,15 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   StoriesRoute: typeof StoriesRoute
   TheTrailRoute: typeof TheTrailRoute
-  ChaptersTheAgreementRoute: typeof ChaptersTheAgreementRoute
-  ChaptersTheMarchRoute: typeof ChaptersTheMarchRoute
-  ChaptersTheRiverRoute: typeof ChaptersTheRiverRoute
-  ChaptersTheRoadRoute: typeof ChaptersTheRoadRoute
-  ChaptersTheStateRoute: typeof ChaptersTheStateRoute
+  ApiSubscribeRoute: typeof ApiSubscribeRoute
+  ChaptersTheFestivalRoute: typeof ChaptersTheFestivalRoute
+  ChaptersTheNextGenerationRoute: typeof ChaptersTheNextGenerationRoute
+  ChaptersTheRailroadRoute: typeof ChaptersTheRailroadRoute
+  ChaptersTheSessionsRoute: typeof ChaptersTheSessionsRoute
+  ChaptersTheSoundRoute: typeof ChaptersTheSoundRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
   SitesSlugRoute: typeof SitesSlugRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   SitesIndexRoute: typeof SitesIndexRoute
 }
 
@@ -230,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sites/$slug': {
       id: '/sites/$slug'
       path: '/sites/$slug'
@@ -237,39 +284,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chapters/the-state': {
-      id: '/chapters/the-state'
-      path: '/chapters/the-state'
-      fullPath: '/chapters/the-state'
-      preLoaderRoute: typeof ChaptersTheStateRouteImport
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chapters/the-road': {
-      id: '/chapters/the-road'
-      path: '/chapters/the-road'
-      fullPath: '/chapters/the-road'
-      preLoaderRoute: typeof ChaptersTheRoadRouteImport
+    '/chapters/the-sound': {
+      id: '/chapters/the-sound'
+      path: '/chapters/the-sound'
+      fullPath: '/chapters/the-sound'
+      preLoaderRoute: typeof ChaptersTheSoundRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chapters/the-river': {
-      id: '/chapters/the-river'
-      path: '/chapters/the-river'
-      fullPath: '/chapters/the-river'
-      preLoaderRoute: typeof ChaptersTheRiverRouteImport
+    '/chapters/the-sessions': {
+      id: '/chapters/the-sessions'
+      path: '/chapters/the-sessions'
+      fullPath: '/chapters/the-sessions'
+      preLoaderRoute: typeof ChaptersTheSessionsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chapters/the-march': {
-      id: '/chapters/the-march'
-      path: '/chapters/the-march'
-      fullPath: '/chapters/the-march'
-      preLoaderRoute: typeof ChaptersTheMarchRouteImport
+    '/chapters/the-railroad': {
+      id: '/chapters/the-railroad'
+      path: '/chapters/the-railroad'
+      fullPath: '/chapters/the-railroad'
+      preLoaderRoute: typeof ChaptersTheRailroadRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/chapters/the-agreement': {
-      id: '/chapters/the-agreement'
-      path: '/chapters/the-agreement'
-      fullPath: '/chapters/the-agreement'
-      preLoaderRoute: typeof ChaptersTheAgreementRouteImport
+    '/chapters/the-next-generation': {
+      id: '/chapters/the-next-generation'
+      path: '/chapters/the-next-generation'
+      fullPath: '/chapters/the-next-generation'
+      preLoaderRoute: typeof ChaptersTheNextGenerationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chapters/the-festival': {
+      id: '/chapters/the-festival'
+      path: '/chapters/the-festival'
+      fullPath: '/chapters/the-festival'
+      preLoaderRoute: typeof ChaptersTheFestivalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/subscribe': {
+      id: '/api/subscribe'
+      path: '/api/subscribe'
+      fullPath: '/api/subscribe'
+      preLoaderRoute: typeof ApiSubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -281,12 +342,15 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   StoriesRoute: StoriesRoute,
   TheTrailRoute: TheTrailRoute,
-  ChaptersTheAgreementRoute: ChaptersTheAgreementRoute,
-  ChaptersTheMarchRoute: ChaptersTheMarchRoute,
-  ChaptersTheRiverRoute: ChaptersTheRiverRoute,
-  ChaptersTheRoadRoute: ChaptersTheRoadRoute,
-  ChaptersTheStateRoute: ChaptersTheStateRoute,
+  ApiSubscribeRoute: ApiSubscribeRoute,
+  ChaptersTheFestivalRoute: ChaptersTheFestivalRoute,
+  ChaptersTheNextGenerationRoute: ChaptersTheNextGenerationRoute,
+  ChaptersTheRailroadRoute: ChaptersTheRailroadRoute,
+  ChaptersTheSessionsRoute: ChaptersTheSessionsRoute,
+  ChaptersTheSoundRoute: ChaptersTheSoundRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
   SitesSlugRoute: SitesSlugRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   SitesIndexRoute: SitesIndexRoute,
 }
 export const routeTree = rootRouteImport

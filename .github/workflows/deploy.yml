@@ -10,6 +10,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
+    env:
+      VITE_SITE_URL: https://theholstonroad.org
     steps:
       - uses: actions/checkout@v4
 
@@ -28,6 +30,11 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      - name: Patch worker entry
+        # wrangler deploy does not run our npm deploy script, so CI must apply the Worker patch
+        # explicitly after build and before deploy.
+        run: pnpm patch-worker
 
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3

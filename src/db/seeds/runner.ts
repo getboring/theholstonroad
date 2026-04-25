@@ -79,7 +79,7 @@ interface SeedModule {
 	dmoContacts: Record<string, unknown>[]
 }
 
-function seedTenant(mod: SeedModule, name: string): { sql: string; counts: Record<string, number> } {
+function seedTenant(mod: SeedModule, _name: string): { sql: string; counts: Record<string, number> } {
 	const now = Math.floor(Date.now() / 1000)
 	const trailRow = { ...mod.trail, isActive: true, createdAt: new Date(now * 1000), updatedAt: new Date(now * 1000) }
 	const venueRows = mod.majorVenues.map((v) => ({ ...v, isActive: true, createdAt: new Date(now * 1000), updatedAt: new Date(now * 1000) }))

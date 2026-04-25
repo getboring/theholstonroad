@@ -71,3 +71,29 @@ export async function getHolstonRoadDmoContacts(d1: D1Database) {
 		.orderBy(schema.dmoContacts.name)
 		.all()
 }
+
+export async function subscribeToNewsletter(d1: D1Database, email: string, name?: string) {
+	const db = getDb(d1)
+	const trail = await getHolstonRoadTrail(d1)
+	if (!trail) throw new Error("Trail not found")
+
+	// Check if already subscribed
+	const existing = await db
+		.select()
+		.from(schema.subscribers)
+		.where(and(eq(schema.subscribers.trailId, trail.id), eq(schema.subscribers.email, email)))
+		.get()
+
+	if (existing) {
+		return { success: true, alreadySubscribed: true }
+	}
+
+	await db.insert(schema.subscribers).values({
+		trailId: trail.id,
+		email,
+		name: name || null,
+		source: "website",
+	})
+
+	return { success: true, alreadySubscribed: false }
+}

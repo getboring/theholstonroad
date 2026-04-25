@@ -1,27 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-river-50: #f0f7f2;
-  --color-river-100: #dcefe1;
-  --color-river-200: #bbdec6;
-  --color-river-300: #8ec5a1;
-  --color-river-400: #5da679;
-  --color-river-500: #3c8a5e;
-  --color-river-600: #2b6e49;
-  --color-river-700: #1a472a;
-  --color-river-800: #163822;
-  --color-river-900: #122f1d;
+  --color-burgundy-50: #fdf2f2;
+  --color-burgundy-100: #fce7e7;
+  --color-burgundy-200: #f9d0d0;
+  --color-burgundy-300: #f2a9a9;
+  --color-burgundy-400: #e87777;
+  --color-burgundy-500: #d95555;
+  --color-burgundy-600: #b83a3a;
+  --color-burgundy-700: #7c1d1d;
+  --color-burgundy-800: #5c1515;
+  --color-burgundy-900: #3d0f0f;
 
-  --color-forge-50: #fdf4ef;
-  --color-forge-100: #f9e4d8;
-  --color-forge-200: #f2c5b0;
-  --color-forge-300: #e8a07e;
-  --color-forge-400: #d97a52;
-  --color-forge-500: #c45c1a;
-  --color-forge-600: #a84d16;
-  --color-forge-700: #8c4013;
-  --color-forge-800: #733610;
-  --color-forge-900: #5c2d0e;
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+
+  --color-walnut-50: #faf9f7;
+  --color-walnut-100: #f0ede8;
+  --color-walnut-200: #e0dbd2;
+  --color-walnut-300: #c9c2b4;
+  --color-walnut-400: #a89e8c;
+  --color-walnut-500: #8c816e;
+  --color-walnut-600: #6e6556;
+  --color-walnut-700: #554d41;
+  --color-walnut-800: #3d3730;
+  --color-walnut-900: #2a2621;
 
   --color-stone-50: #fafaf9;
   --color-stone-100: #f5f5f4;
@@ -46,7 +57,6 @@ body {
   @apply bg-stone-50 text-stone-800 antialiased;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -61,7 +71,6 @@ body {
   background: #78716c;
 }
 
-/* Selection color */
 ::selection {
-  background: rgba(196, 92, 26, 0.2);
+  background: rgba(180, 83, 9, 0.2);
 }

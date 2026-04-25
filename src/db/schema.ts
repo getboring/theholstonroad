@@ -138,6 +138,26 @@ export const waysides = sqliteTable("waysides", {
 // DMO CONTACTS (regional tourism offices)
 // =============================================================================
 
+// =============================================================================
+// NEWSLETTER SUBSCRIBERS
+// =============================================================================
+
+export const subscribers = sqliteTable("subscribers", {
+	id: text("id").primaryKey().$defaultFn(() => ulid()),
+	trailId: text("trail_id").notNull().references(() => trails.id, { onDelete: "cascade" }),
+	email: text("email").notNull(),
+	name: text("name"),
+	source: text("source").default("website"),
+	isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+	createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+}, (table) => ({
+	trailEmailIdx: uniqueIndex("subscribers_trail_email_idx").on(table.trailId, table.email),
+}))
+
+// =============================================================================
+// DMO CONTACTS (regional tourism offices)
+// =============================================================================
+
 export const dmoContacts = sqliteTable("dmo_contacts", {
 	id: text("id").primaryKey().$defaultFn(() => ulid()),
 	trailId: text("trail_id").notNull().references(() => trails.id, { onDelete: "cascade" }),
@@ -164,6 +184,7 @@ export const trailsRelations = relations(trails, ({ many }) => ({
 	events: many(events),
 	waysides: many(waysides),
 	dmoContacts: many(dmoContacts),
+	subscribers: many(subscribers),
 }))
 
 export const venuesRelations = relations(venues, ({ one, many }) => ({
@@ -211,3 +232,5 @@ export type Wayside = typeof waysides.$inferSelect
 export type NewWayside = typeof waysides.$inferInsert
 export type DmoContact = typeof dmoContacts.$inferSelect
 export type NewDmoContact = typeof dmoContacts.$inferInsert
+export type Subscriber = typeof subscribers.$inferSelect
+export type NewSubscriber = typeof subscribers.$inferInsert

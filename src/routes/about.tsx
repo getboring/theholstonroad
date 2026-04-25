@@ -1,156 +1,344 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Compass, MapPin, Calendar, BookOpen, ArrowRight } from 'lucide-react'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+	ArrowRight,
+	BadgeCheck,
+	Building2,
+	ExternalLink,
+	Newspaper,
+	Route as RouteIcon,
+} from "lucide-react";
+import { createPageHead } from "../lib/seo";
+import {
+	audienceSurfaces,
+	credibilityStats,
+	getAboutPageStructuredData,
+	launchPillars,
+	partnerProofSignals,
+} from "../logic/partner-proof";
 
-export const Route = createFileRoute('/about')({
-  component: AboutPage,
-  head: () => ({
-    meta: [
-      { title: 'About — The Holston Road' },
-      { name: 'description', content: 'The Holston Road is a trail through America\'s First Frontier — not to visit the past, but to understand how the frontier still works.' },
-    ],
-  }),
-})
+const aboutStructuredData = getAboutPageStructuredData();
+
+export const Route = createFileRoute("/about")({
+	component: AboutPage,
+	head: () => {
+		const pageHead = createPageHead({
+			title: "About — The Holston Road",
+			description:
+				"The Holston Road is a regional music trail effort shaped by real Northeast Tennessee institutions, venues, festivals, and music programs.",
+			path: "/about",
+		});
+
+		return {
+			...pageHead,
+			scripts: [
+				{
+					type: "application/ld+json",
+					children: JSON.stringify(aboutStructuredData),
+				},
+			],
+		};
+	},
+});
 
 function AboutPage() {
-  return (
-    <main>
-      {/* Hero */}
-      <section className="bg-river-900 px-4 py-20 text-white sm:py-28">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="mb-6 font-display text-4xl font-bold tracking-tight sm:text-6xl">
-            The frontier still works.
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-river-200">
-            The Holston Road is not a heritage trail. It is a frontier trail — for people who believe
-            the best American stories are the ones where ordinary people did extraordinary things
-            without waiting for someone else to organize it.
-          </p>
-        </div>
-      </section>
+	return (
+		<main id="main-content">
+			<section className="bg-burgundy-900 px-4 py-20 text-white sm:py-28">
+				<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-center">
+					<div>
+						<p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-amber-300">
+							Regional music trail effort
+						</p>
+						<h1 className="max-w-4xl font-display text-4xl font-bold tracking-tight sm:text-6xl">
+							This trail feels credible because the region already is.
+						</h1>
+						<p className="mt-6 max-w-3xl text-lg leading-relaxed text-burgundy-100">
+							The Holston Road is not trying to invent a music destination out of thin air. It is
+							organizing the real institutions, stages, festivals, and stories that already make
+							Northeast Tennessee feel like a living music corridor.
+						</p>
+						<p className="mt-4 max-w-3xl text-lg leading-relaxed text-burgundy-100">
+							For the 2026 launch, that matters. Partners, press, and visitors should see a regional
+							effort anchored by museums, educators, broadcasters, and venues that can already be
+							visited, heard, and trusted.
+						</p>
 
-      {/* Mission */}
-      <section className="px-4 py-20">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-6 font-display text-3xl font-bold text-stone-900">Our Mission</h2>
-          <div className="space-y-6 text-lg leading-relaxed text-stone-700">
-            <p>
-              Most heritage trails are rear-view mirror products. They say: "Come look at what happened here."
-              They assume the audience is already interested in history. They speak in the past tense.
-              They attract the already-converted.
-            </p>
-            <p>
-              The Holston Road does the opposite. It says: "This is where a <em>type of American</em> was forged —
-              the kind who doesn't wait for permission, who builds their own government when the existing one fails,
-              who resupplies an army from their own farm, who reinvents their town when the river trade dries up."
-            </p>
-            <p>
-              That type is not extinct. The Holston Road is for people who recognize themselves in that story.
-            </p>
-          </div>
-        </div>
-      </section>
+						<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+							<Link
+								to="/sites"
+								search={{ city: "all", type: "major", eventful: "all" }}
+								className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-600 px-8 py-3.5 font-medium text-white transition hover:bg-amber-700"
+							>
+								See anchor venues <ArrowRight className="h-4 w-4" />
+							</Link>
+							<Link
+								to="/stories"
+								className="inline-flex items-center justify-center gap-2 rounded-full border border-burgundy-600 bg-white/5 px-8 py-3.5 font-medium text-burgundy-50 transition hover:bg-burgundy-800"
+							>
+								Read the regional story
+							</Link>
+						</div>
+					</div>
 
-      {/* Five Chapters Detail */}
-      <section className="border-y border-stone-200 bg-stone-100 px-4 py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-center font-display text-3xl font-bold text-stone-900">
-            The Five Chapters
-          </h2>
+					<aside className="rounded-3xl border border-white/15 bg-white/10 p-6 shadow-2xl backdrop-blur-md">
+						<p className="text-sm font-medium uppercase tracking-[0.25em] text-amber-300">
+							Visible proof
+						</p>
+						<h2 className="mt-3 font-display text-3xl font-bold text-white">
+							Real anchors already on the ground.
+						</h2>
+						<div className="mt-6 flex flex-col gap-3">
+							{partnerProofSignals.slice(0, 4).map((signal) => (
+								<div
+									key={signal.name}
+									className="rounded-2xl border border-white/10 bg-white/5 p-4"
+								>
+									<p className="text-xs font-medium uppercase tracking-[0.2em] text-burgundy-200">
+										{signal.category}
+									</p>
+									<h3 className="mt-2 font-display text-xl font-bold text-white">{signal.name}</h3>
+									<p className="mt-2 text-sm leading-relaxed text-burgundy-100">{signal.proof}</p>
+								</div>
+							))}
+						</div>
+					</aside>
+				</div>
+			</section>
 
-          <div className="space-y-8">
-            {[
-              {
-                num: '01',
-                title: 'The River',
-                desc: 'Before there were roads, there was the river. The Holston brought the first settlers, the first trade, the first conflicts. The Netherland Inn stands at the intersection of river and road — the only registered historic site in the nation that was both a boatyard and a stage stop.',
-                site: 'Netherland Inn, Kingsport',
-              },
-              {
-                num: '02',
-                title: 'The Road',
-                desc: 'The Old Stage Road connected the frontier to the world. For fifty years, stagecoaches carried mail, passengers, and news through mud and mountain gaps. Exchange Place was a relay station — a living history farm where the rhythm of the 1820s continues today.',
-                site: 'Exchange Place, Kingsport',
-              },
-              {
-                num: '03',
-                title: 'The Agreement',
-                desc: 'When the government failed them, the settlers made their own. The Watauga Association was the first autonomous white government in the British colonies. Twenty families walked into Cherokee land and wrote their own constitution. It was 1772. They were not asking for permission.',
-                site: 'Sycamore Shoals, Elizabethton',
-              },
-              {
-                num: '04',
-                title: 'The March',
-                desc: "When threatened, the frontier didn't hide. It marched 330 miles over mountains to fight the Battle of Kings Mountain — the turning point of the Revolutionary War in the South. On September 24, 1780, 900 men camped at Rocky Mount, ate William Cobb's bacon, and loaded his bullets.",
-                site: 'Rocky Mount, Piney Flats',
-              },
-              {
-                num: '05',
-                title: 'The State',
-                desc: "From wilderness to territory to state in one generation. Rocky Mount served as the capital of the Southwest Territory from 1790 to 1792. William Blount ran a territory from a farmhouse. Andrew Jackson waited six weeks here for permission to practice law.",
-                site: 'Rocky Mount, Piney Flats',
-              },
-            ].map((chapter) => (
-              <div key={chapter.num} className="flex gap-6 rounded-xl border border-stone-200 bg-white p-6 sm:p-8">
-                <div className="hidden font-display text-5xl font-bold text-stone-200 sm:block">
-                  {chapter.num}
-                </div>
-                <div>
-                  <h3 className="mb-2 font-display text-xl font-bold text-stone-900">
-                    {chapter.title}
-                  </h3>
-                  <p className="mb-3 text-stone-600 leading-relaxed">{chapter.desc}</p>
-                  <p className="text-sm font-medium text-river-700">{chapter.site}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+			<section className="px-4 py-20">
+				<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
+					<div>
+						<p className="text-sm font-medium uppercase tracking-[0.28em] text-burgundy-700">
+							Why this exists
+						</p>
+						<h2 className="mt-3 font-display text-3xl font-bold text-stone-900 sm:text-4xl">
+							A public trail for a regional music story that was already bigger than one weekend.
+						</h2>
+						<div className="mt-8 flex flex-col gap-6 text-lg leading-relaxed text-stone-700">
+							<p>
+								In 1927, Ralph Peer set up a temporary recording studio on State Street in Bristol
+								and recorded Jimmie Rodgers, the Carter Family, and a slate of performers who would
+								change American music. Congress later recognized Bristol as the Birthplace of
+								Country Music, but the real story never belonged to one building or one week.
+							</p>
+							<p>
+								The railroad, the radio years, the listening rooms, the festival stages, and the
+								music programs across the Tri-Cities all kept the sound moving. The Holston Road
+								exists to make that regional shape legible. It connects Bristol, Johnson City,
+								Kingsport, and the adjacent Appalachian corridor into one public-facing route people
+								can understand.
+							</p>
+							<p>
+								That is why the product should not feel like a standalone demo. It should feel like
+								a front door into institutions that already carry weight: the museum on State
+								Street, the rooms that still book shows, the classrooms training the next
+								generation, and the festival that proves the audience is already here.
+							</p>
+						</div>
+					</div>
 
-      {/* Partners */}
-      <section id="partners" className="px-4 py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="mb-4 text-center font-display text-3xl font-bold text-stone-900">Our Partners</h2>
-          <p className="mx-auto mb-12 max-w-2xl text-center text-stone-600">
-            The Holston Road is built on the work of historic sites, museums, and communities
-            that have been telling this story for generations.
-          </p>
+					<aside className="flex flex-col gap-4 rounded-3xl border border-stone-200 bg-stone-50 p-6">
+						<div className="flex items-center gap-2 text-burgundy-700">
+							<BadgeCheck className="h-5 w-5" />
+							<p className="text-sm font-semibold uppercase tracking-[0.25em]">
+								Credibility markers
+							</p>
+						</div>
+						<div className="flex flex-col gap-4">
+							{credibilityStats.map((stat) => (
+								<div
+									key={stat.label}
+									className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm"
+								>
+									<p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
+										{stat.label}
+									</p>
+									<p className="mt-2 font-display text-3xl font-bold text-stone-900">
+										{stat.value}
+									</p>
+									<p className="mt-2 text-sm leading-relaxed text-stone-600">{stat.detail}</p>
+								</div>
+							))}
+						</div>
+					</aside>
+				</div>
+			</section>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { name: 'Rocky Mount State Historic Site', role: 'Flagship Anchor' },
-              { name: 'Sycamore Shoals State Historic Area', role: 'Anchor Site' },
-              { name: 'Netherland Inn', role: 'Anchor Site' },
-              { name: 'Exchange Place Living History Farm', role: 'Anchor Site' },
-              { name: 'Birthplace of Country Music Museum', role: 'Present Site' },
-              { name: 'Tipton-Haynes Estate', role: 'Road Stop' },
-            ].map((partner) => (
-              <div key={partner.name} className="rounded-xl border border-stone-200 bg-white p-5">
-                <h3 className="mb-1 font-semibold text-stone-900">{partner.name}</h3>
-                <p className="text-sm text-stone-500">{partner.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+			<section id="partners" className="border-y border-stone-200 bg-stone-100 px-4 py-20">
+				<div className="mx-auto max-w-6xl">
+					<div className="mx-auto max-w-3xl text-center">
+						<p className="text-sm font-medium uppercase tracking-[0.28em] text-burgundy-700">
+							Regional proof
+						</p>
+						<h2 className="mt-3 font-display text-3xl font-bold text-stone-900 sm:text-4xl">
+							Institutions that make The Holston Road read like a real corridor.
+						</h2>
+						<p className="mt-4 text-lg leading-relaxed text-stone-600">
+							These are not invented endorsements. They are the real museums, venues, broadcasters,
+							educators, and neighboring trail infrastructure that already give the region cultural
+							weight.
+						</p>
+					</div>
 
-      {/* Team / Credibility */}
-      <section className="border-t border-stone-200 bg-stone-100 px-4 py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mb-6 font-display text-3xl font-bold text-stone-900">Stewarded by the Frontier</h2>
-          <p className="mb-8 text-lg leading-relaxed text-stone-700">
-            The Holston Road is led by people who live this history. Cody Boring serves as
-            Executive Director of Rocky Mount State Historic Site — the first territorial capital
-            and a flagship anchor of the trail. The 2024 Heritage Assessment by Tennessee State
-            Historian Dr. Carroll Van West was conducted at his invitation.
-          </p>
-          <p className="text-stone-600">
-            This trail is not invented by consultants. It is stewarded by people who
-            believe the frontier story belongs to everyone — and that the best way to tell it
-            is to put people on the road where it happened.
-          </p>
-        </div>
-      </section>
-    </main>
-  )
+					<div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						{partnerProofSignals.map((signal) => (
+							<article
+								key={signal.name}
+								className="flex h-full flex-col rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
+							>
+								<p className="text-xs font-semibold uppercase tracking-[0.2em] text-burgundy-700">
+									{signal.category}
+								</p>
+								<h3 className="mt-3 font-display text-2xl font-bold text-stone-900">
+									{signal.name}
+								</h3>
+								<p className="mt-3 text-base leading-relaxed text-stone-700">{signal.proof}</p>
+								<p className="mt-4 text-sm leading-relaxed text-stone-600">{signal.description}</p>
+								<div className="mt-6">
+									{signal.link.kind === "internal" ? (
+										<Link
+											to={signal.link.to}
+											className="inline-flex items-center gap-2 text-sm font-medium text-burgundy-700 transition hover:text-burgundy-800"
+										>
+											{signal.link.label}
+											<ArrowRight className="h-4 w-4" />
+										</Link>
+									) : (
+										<a
+											href={signal.link.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center gap-2 text-sm font-medium text-burgundy-700 transition hover:text-burgundy-800"
+										>
+											{signal.link.label}
+											<ExternalLink className="h-4 w-4" />
+										</a>
+									)}
+								</div>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section className="px-4 py-20">
+				<div className="mx-auto max-w-6xl">
+					<div className="mx-auto max-w-3xl text-center">
+						<p className="text-sm font-medium uppercase tracking-[0.28em] text-burgundy-700">
+							2026 launch narrative
+						</p>
+						<h2 className="mt-3 font-display text-3xl font-bold text-stone-900 sm:text-4xl">
+							The strongest story is connection, not invention.
+						</h2>
+						<p className="mt-4 text-lg leading-relaxed text-stone-600">
+							The Holston Road works best when it behaves like connective tissue between real
+							places, not a branded layer sitting above them.
+						</p>
+					</div>
+
+					<div className="mt-12 grid gap-6 lg:grid-cols-3">
+						{launchPillars.map((pillar, index) => {
+							const Icon = [RouteIcon, Building2, Newspaper][index];
+
+							return (
+								<div
+									key={pillar.title}
+									className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
+								>
+									<div className="flex size-12 items-center justify-center rounded-2xl bg-burgundy-50 text-burgundy-700">
+										<Icon className="h-5 w-5" />
+									</div>
+									<h3 className="mt-5 font-display text-2xl font-bold text-stone-900">
+										{pillar.title}
+									</h3>
+									<p className="mt-3 leading-relaxed text-stone-600">{pillar.description}</p>
+								</div>
+							);
+						})}
+					</div>
+				</div>
+			</section>
+
+			<section className="border-t border-stone-200 bg-stone-100 px-4 py-20">
+				<div className="mx-auto max-w-6xl">
+					<div className="mx-auto max-w-3xl text-center">
+						<p className="text-sm font-medium uppercase tracking-[0.28em] text-burgundy-700">
+							Partner-facing surface
+						</p>
+						<h2 className="mt-3 font-display text-3xl font-bold text-stone-900 sm:text-4xl">
+							Useful to partners, press, and visitors on day one.
+						</h2>
+						<p className="mt-4 text-lg leading-relaxed text-stone-600">
+							The page should reassure cultural institutions, regional advocates, and first-time
+							visitors that the trail is grounded in public-facing places they can verify
+							immediately.
+						</p>
+					</div>
+
+					<div className="mt-12 grid gap-6 lg:grid-cols-3">
+						{audienceSurfaces.map((surface) => (
+							<div
+								key={surface.audience}
+								className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm"
+							>
+								<p className="text-xs font-semibold uppercase tracking-[0.2em] text-burgundy-700">
+									{surface.audience}
+								</p>
+								<h3 className="mt-3 font-display text-2xl font-bold text-stone-900">
+									{surface.title}
+								</h3>
+								<p className="mt-3 leading-relaxed text-stone-600">{surface.description}</p>
+								<div className="mt-6">
+									{surface.cta.kind === "internal" ? (
+										<Link
+											to={surface.cta.to}
+											className="inline-flex items-center gap-2 text-sm font-medium text-burgundy-700 transition hover:text-burgundy-800"
+										>
+											{surface.cta.label}
+											<ArrowRight className="h-4 w-4" />
+										</Link>
+									) : (
+										<a
+											href={surface.cta.href}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="inline-flex items-center gap-2 text-sm font-medium text-burgundy-700 transition hover:text-burgundy-800"
+										>
+											{surface.cta.label}
+											<ExternalLink className="h-4 w-4" />
+										</a>
+									)}
+								</div>
+							</div>
+						))}
+					</div>
+
+					<div className="mt-12 rounded-3xl bg-burgundy-900 p-8 text-white sm:p-10">
+						<h2 className="font-display text-3xl font-bold">
+							Stewarded by the sound, backed by the region.
+						</h2>
+						<p className="mt-4 max-w-3xl text-lg leading-relaxed text-burgundy-100">
+							If you run a venue, festival, museum, education program, or tourism office in this
+							music corridor, the goal is simple: make the region feel more connected, more legible,
+							and more trustworthy in public.
+						</p>
+						<div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+							<Link
+								to="/the-trail"
+								className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-600 px-7 py-3 font-medium text-white transition hover:bg-amber-700"
+							>
+								Explore the route <ArrowRight className="h-4 w-4" />
+							</Link>
+							<a
+								href="mailto:hello@theholstonroad.org"
+								className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3 font-medium text-white transition hover:bg-white/10"
+							>
+								Talk with the project team
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	);
 }

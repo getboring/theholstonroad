@@ -1,156 +1,158 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { BookOpen, ArrowRight, Mic, Video } from 'lucide-react'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { BookOpen, ArrowRight, Mic, Radio } from 'lucide-react'
+import AudioPlayer from '../components/AudioPlayer'
+import { createPageHead } from '../lib/seo'
 
 export const Route = createFileRoute('/stories')({
   component: StoriesPage,
-  head: () => ({
-    meta: [
-      { title: 'Stories — The Holston Road' },
-      { name: 'description', content: 'Audio stories, articles, and documentary content from The Holston Road.' },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: 'Stories — The Holston Road',
+      description:
+        'Read the live trail chapters and follow along as The Holston Road audio stories move from production into release.',
+      path: '/stories',
+    }),
 })
 
-const stories = [
+const audioStories = [
   {
-    title: 'The Boat That Never Came Back',
-    type: 'audio',
-    chapter: 'The River',
-    duration: '4:30',
-    description: 'The flatboat era on the Holston River, when pioneers built one-way vessels and broke them up at journey\'s end for lumber.',
+    title: 'The Day the Warehouse Became a Studio',
+    chapter: 'The 1927 Sessions',
+    duration: '6:30',
+    description: 'Ralph Peer arrived in Bristol with a microphone and a hunch. Twelve days later, country music had a birthplace.',
   },
   {
-    title: 'Two Dollars and a Strong Stomach',
-    type: 'audio',
-    chapter: 'The Road',
+    title: 'The Railroad That Brought the Sound',
+    chapter: 'The Railroad',
     duration: '5:15',
-    description: 'The reality of stagecoach travel on the Old Stage Road, with stops at relay stations and trading posts.',
+    description: 'How the Virginia & Tennessee Railroad turned Bristol into a crossroads of American music.',
   },
   {
-    title: 'The Lease That Became a Nation',
-    type: 'audio',
-    chapter: 'The Agreement',
-    duration: '6:00',
-    description: 'How twenty families negotiated directly with the Cherokee and wrote their own laws in 1772.',
+    title: 'Maybelle Carter and the Thumb Brush',
+    chapter: 'The Musicians',
+    duration: '7:00',
+    description: 'The guitar technique that changed American music — and the woman who invented it.',
   },
   {
-    title: 'September 24, 1780',
-    type: 'audio',
-    chapter: 'The March',
-    duration: '7:45',
-    description: 'The day 900 Overmountain Men camped at Rocky Mount, ate William Cobb\'s bacon, and loaded his bullets.',
+    title: 'From the Mountain to the Microphone',
+    chapter: 'The Sound',
+    duration: '5:45',
+    description: 'How Appalachian ballads, blues, and gospel collided in the Tri-Cities to create something new.',
   },
   {
-    title: 'Six Weeks at Rocky Mount',
-    type: 'audio',
-    chapter: 'The State',
-    duration: '5:30',
-    description: 'Andrew Jackson waiting for his law license in a log house that was also the seat of government.',
+    title: 'State Street, September',
+    chapter: 'Rhythm & Roots',
+    duration: '6:15',
+    description: 'The story of Bristol Rhythm & Roots Reunion — from a small street festival to a national destination.',
   },
 ]
 
-const articles = [
+const storyChapters = [
   {
-    title: 'The Watauga Association: America\'s First Frontier Government',
-    date: 'April 2026',
-    excerpt: 'In 1772, twenty families walked into Cherokee land and wrote their own constitution. It was illegal. It worked anyway.',
+    title: 'The Sound',
+    href: '/chapters/the-sound',
+    excerpt: 'How Appalachian ballads, gospel, and blues converged in the Tri-Cities.',
   },
   {
-    title: 'Following the Overmountain Men: A Tri-Cities Road Trip',
-    date: 'March 2026',
-    excerpt: 'A complete driving itinerary following the route of the 900 men who marched from Sycamore Shoals to Kings Mountain.',
+    title: 'The Railroad',
+    href: '/chapters/the-railroad',
+    excerpt: 'The railroad carried musicians, songs, and the sound of the mountains outward.',
   },
   {
-    title: 'Visiting Rocky Mount State Historic Site: What to Expect',
-    date: 'February 2026',
-    excerpt: 'The first territorial capital of the Southwest Territory is a working historic farm with living history interpreters.',
+    title: 'The 1927 Sessions',
+    href: '/chapters/the-sessions',
+    excerpt: 'The recordings that made Bristol the birthplace of country music.',
   },
-]
+  {
+    title: 'Rhythm & Roots',
+    href: '/chapters/the-festival',
+    excerpt: 'How a downtown festival became one of the region’s clearest signs that the music is still alive.',
+  },
+  {
+    title: 'The Next Generation',
+    href: '/chapters/the-next-generation',
+    excerpt: 'Where the tradition is being taught, played, and carried forward today.',
+  },
+] as const
 
 function StoriesPage() {
   return (
     <main>
-      <section className="bg-river-900 px-4 py-20 text-white sm:py-28">
+      <section className="bg-burgundy-900 px-4 py-20 text-white sm:py-28">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="mb-6 font-display text-4xl font-bold tracking-tight sm:text-6xl">Stories</h1>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-river-200">
-            Audio stories, articles, and documentary content that bring the frontier to life.
-            Listen at the sites, or experience the trail from anywhere.
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-burgundy-200">
+            The trail chapters are live now. Audio stories are still in production, and they’ll
+            appear here as they’re ready.
           </p>
         </div>
       </section>
 
       <section className="px-4 py-16">
         <div className="mx-auto max-w-5xl space-y-16">
-          {/* Audio Stories */}
           <div>
             <div className="mb-8 flex items-center gap-3">
-              <Mic className="h-6 w-6 text-river-700" />
-              <h2 className="font-display text-2xl font-bold text-stone-900">Audio Stories</h2>
+              <Mic className="h-6 w-6 text-burgundy-700" />
+              <h2 className="font-display text-2xl font-bold text-stone-900">
+                Audio series in production
+              </h2>
             </div>
+            <p className="mb-6 max-w-3xl text-sm leading-relaxed text-stone-600">
+              These are the first story topics planned for the listening experience. We’ll replace
+              the placeholders below with live audio as each episode is finished.
+            </p>
             <div className="grid gap-4 md:grid-cols-2">
-              {stories.map((story) => (
-                <div
+              {audioStories.map((story) => (
+                <AudioPlayer
                   key={story.title}
-                  className="group flex gap-4 rounded-xl border border-stone-200 bg-white p-5 transition hover:shadow-md"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-river-100 text-river-700">
-                    <BookOpen className="h-5 w-5" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-xs font-medium uppercase tracking-wide text-forge-600">
-                      {story.chapter}
-                    </span>
-                    <h3 className="font-display text-lg font-bold text-stone-900 group-hover:text-river-700 transition">
-                      {story.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-stone-600">{story.description}</p>
-                    <span className="mt-2 inline-block text-xs text-stone-400">{story.duration}</span>
-                  </div>
-                </div>
+                  title={story.title}
+                  chapter={story.chapter}
+                  duration={story.duration}
+                  description={story.description}
+                />
               ))}
             </div>
           </div>
 
-          {/* Articles */}
           <div>
             <div className="mb-8 flex items-center gap-3">
-              <BookOpen className="h-6 w-6 text-river-700" />
-              <h2 className="font-display text-2xl font-bold text-stone-900">Articles</h2>
+              <BookOpen className="h-6 w-6 text-burgundy-700" />
+              <h2 className="font-display text-2xl font-bold text-stone-900">
+                Read the trail chapters now
+              </h2>
             </div>
             <div className="space-y-4">
-              {articles.map((article) => (
-                <div
-                  key={article.title}
+              {storyChapters.map((chapter) => (
+                <Link
+                  key={chapter.href}
+                  to={chapter.href}
                   className="group flex items-start justify-between gap-4 rounded-xl border border-stone-200 bg-white p-6 transition hover:shadow-md"
                 >
                   <div>
-                    <span className="text-xs text-stone-400">{article.date}</span>
-                    <h3 className="mt-1 font-display text-lg font-bold text-stone-900 group-hover:text-river-700 transition">
-                      {article.title}
+                    <h3 className="mt-1 font-display text-lg font-bold text-stone-900 group-hover:text-burgundy-700 transition">
+                      {chapter.title}
                     </h3>
-                    <p className="mt-2 text-sm text-stone-600">{article.excerpt}</p>
+                    <p className="mt-2 text-sm text-stone-600">{chapter.excerpt}</p>
                   </div>
-                  <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-stone-300 transition group-hover:text-river-700" />
-                </div>
+                  <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-stone-300 transition group-hover:text-burgundy-700" />
+                </Link>
               ))}
             </div>
           </div>
 
-          {/* Podcast */}
-          <div className="rounded-2xl bg-river-800 p-8 text-white">
+          <div className="rounded-2xl bg-burgundy-800 p-8 text-white">
             <div className="flex items-center gap-3 mb-4">
-              <Mic className="h-6 w-6 text-forge-400" />
-              <h2 className="font-display text-2xl font-bold">The Road Podcast</h2>
+              <Radio className="h-6 w-6 text-amber-400" />
+              <h2 className="font-display text-2xl font-bold">The Back Porch Podcast</h2>
             </div>
-            <p className="mb-6 max-w-xl text-river-200">
-              Bi-weekly interviews with historians, living history interpreters, and present-day frontier-types
-              in the Tri-Cities region. Coming soon.
+            <p className="mb-6 max-w-xl text-burgundy-200">
+              We’re still scoping the first interview run with musicians, venue owners, and
+              historians. Join the newsletter and we’ll announce it when the first season is ready.
             </p>
             <div className="flex flex-wrap gap-3">
-              <span className="rounded-full bg-river-700 px-4 py-2 text-sm">Apple Podcasts</span>
-              <span className="rounded-full bg-river-700 px-4 py-2 text-sm">Spotify</span>
-              <span className="rounded-full bg-river-700 px-4 py-2 text-sm">YouTube</span>
+              <span className="rounded-full bg-burgundy-700 px-4 py-2 text-sm">Launch updates</span>
+              <span className="rounded-full bg-burgundy-700 px-4 py-2 text-sm">Guest announcements</span>
+              <span className="rounded-full bg-burgundy-700 px-4 py-2 text-sm">Behind-the-scenes notes</span>
             </div>
           </div>
         </div>

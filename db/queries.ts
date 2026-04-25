@@ -26,7 +26,7 @@ export async function getTrailVenues(d1: D1Database, trailId: string) {
 		.all()
 }
 
-export async function getTrailVenuesByType(d1: D1Database, trailId: string, type: string) {
+export async function getTrailVenuesByType(d1: D1Database, trailId: string, _type: string) {
 	const db = getDb(d1)
 	return db
 		.select()
