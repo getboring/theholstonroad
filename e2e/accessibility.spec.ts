@@ -5,9 +5,13 @@ const routes = ['/chapters/the-sound', '/about', '/stories', '/guides']
 test.describe('Accessibility', () => {
   for (const route of routes) {
     test(`page has h1 at ${route}`, async ({ page }) => {
+      const errors: string[] = []
+      page.on('pageerror', (err) => errors.push(err.message))
+
       await page.goto(route)
       const h1 = page.locator('h1')
       await expect(h1).toBeVisible()
+      expect(errors).toHaveLength(0)
     })
 
     test(`focus is visible on links at ${route}`, async ({ page }) => {

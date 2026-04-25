@@ -61,7 +61,7 @@ export default function Header() {
 					</Link>
 				</nav>
 
-				<details className="relative md:hidden">
+				<details className="relative md:hidden" open={false}>
 					<summary
 						className="list-none rounded-lg p-2 text-stone-700 transition hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-600 focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden"
 						aria-controls="mobile-menu"

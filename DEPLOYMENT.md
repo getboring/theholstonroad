@@ -109,7 +109,19 @@ npx wrangler deploy
 
 ---
 
-## 4. Verify Deployment
+## 4. Run E2E Tests Before Deploy
+
+Run the full Playwright suite against the local dev server to catch regressions before deploying:
+
+```bash
+pnpm test:e2e
+```
+
+Expected: all tests pass or skip (newsletter validation skips on WebKit due to a known Playwright automation quirk). If any test fails, fix before deploying.
+
+---
+
+## 5. Verify Deployment
 
 ### All pages
 
@@ -174,7 +186,7 @@ guide pages.
 
 ---
 
-## 5. Custom Domain
+## 6. Custom Domain
 
 `theholstonroad.org` is not available in this Cloudflare account yet, so it cannot be attached to
 the Worker today.
@@ -191,7 +203,7 @@ When the zone exists in Cloudflare:
 
 ---
 
-## 6. Environment Variables
+## 7. Environment Variables
 
 For Phase 2+ features, set secrets via Wrangler:
 
@@ -207,7 +219,7 @@ wrangler secret put BETTER_AUTH_SECRET
 
 ---
 
-## 7. Database Operations
+## 8. Database Operations
 
 ### Execute SQL on remote D1
 

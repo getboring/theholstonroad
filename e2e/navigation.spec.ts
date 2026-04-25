@@ -51,6 +51,11 @@ test.describe('404 handling', () => {
 
 test.describe('Header navigation', () => {
   test('all nav links are visible on desktop', async ({ page }) => {
+    const viewport = page.viewportSize()
+    // Desktop nav is hidden on narrow viewports (mobile)
+    if (viewport && viewport.width < 768) {
+      test.skip()
+    }
     await page.goto('/about')
     const nav = page.locator('nav[aria-label="Main navigation"]')
     await expect(nav.getByRole('link', { name: 'The Trail' })).toBeVisible()

@@ -145,14 +145,9 @@ export default function NewsletterSignup() {
 
 					{submissionState === "idle" ? (
 						<form
-							className="mt-6 flex flex-col gap-4"
-							noValidate
-							onSubmit={(event) => {
-								event.preventDefault();
-								event.stopPropagation();
-								void handleSubmit(onSubmit)(event);
-							}}
-						>
+								className="mt-6 flex flex-col gap-4"
+								onSubmit={handleSubmit(onSubmit)}
+							>
 							<div>
 								<label
 									className="mb-2 block text-sm font-medium text-white"
@@ -162,8 +157,8 @@ export default function NewsletterSignup() {
 								</label>
 								<input
 									id="newsletter-email"
-									type="email"
-									required
+									type="text"
+									inputMode="email"
 									autoComplete="email"
 									placeholder="you@example.com"
 									aria-describedby={
