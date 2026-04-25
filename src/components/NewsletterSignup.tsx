@@ -163,6 +163,7 @@ export default function NewsletterSignup() {
 								<input
 									id="newsletter-email"
 									type="email"
+									required
 									autoComplete="email"
 									placeholder="you@example.com"
 									aria-describedby={

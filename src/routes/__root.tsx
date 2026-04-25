@@ -1,4 +1,4 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import NotFoundPage from '../components/NotFoundPage'
@@ -62,10 +62,21 @@ export const Route = createRootRoute({
       ],
     }
   },
+  component: RootLayout,
   notFoundComponent: NotFoundPage,
   errorComponent: ({ error }) => <ErrorPage error={error as Error} />,
   shellComponent: RootDocument,
 })
+
+function RootLayout() {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -73,12 +84,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-stone-50 text-stone-800 antialiased">
-        <Header />
-        {children}
-        <Footer />
-        <Scripts />
-      </body>
+      <body className="min-h-screen bg-stone-50 text-stone-800 antialiased">{children}<Scripts /></body>
     </html>
   )
 }

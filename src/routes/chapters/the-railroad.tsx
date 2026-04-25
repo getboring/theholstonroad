@@ -63,13 +63,13 @@ function ChapterRailroad() {
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-8 font-display text-2xl font-bold text-stone-900">Related Venues</h2>
           <div className="grid gap-6 md:grid-cols-2">
-            <Link to="/sites" className="group flex gap-4 rounded-xl border border-stone-200 bg-white p-5 transition hover:shadow-md">
+            <Link to="/sites/$slug" params={{ slug: 'birthplace-of-country-music-museum' }} className="group flex gap-4 rounded-xl border border-stone-200 bg-white p-5 transition hover:shadow-md">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-walnut-200 text-walnut-700">
                 <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold text-stone-900 group-hover:text-walnut-700 transition">Bristol Train Station</h3>
-                <p className="text-sm text-stone-600">Bristol, VA — Historic rail hub</p>
+                <h3 className="font-display text-lg font-bold text-stone-900 group-hover:text-walnut-700 transition">Birthplace of Country Music Museum</h3>
+                <p className="text-sm text-stone-600">Bristol, VA/TN — Where the railroad met the recordings</p>
               </div>
             </Link>
           </div>

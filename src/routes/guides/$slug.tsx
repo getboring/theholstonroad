@@ -1,19 +1,9 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import GuideArticlePage from "../../components/guides/GuideArticlePage";
-import {
-	getHolstonRoadEvents,
-	getHolstonRoadVenues,
-	getHolstonRoadWaysides,
-} from "../../db/queries";
+import { getHolstonRoadEvents, getHolstonRoadVenues } from "../../db/queries";
 import { getDbBinding } from "../../lib/db-binding";
 import { createPageHead, getCanonicalUrl, SITE_NAME } from "../../lib/seo";
-import {
-	getGuideBySlug,
-	getGuideEvents,
-	getGuideVenues,
-	getGuideWaysides,
-	getRelatedGuides,
-} from "../../logic/guides";
+import { getGuideBySlug, getGuideEvents, getGuideVenues, getRelatedGuides } from "../../logic/guides";
 
 export const Route = createFileRoute("/guides/$slug")({
 	component: GuideDetailPage,
@@ -24,10 +14,9 @@ export const Route = createFileRoute("/guides/$slug")({
 			throw notFound();
 		}
 
-		const [venues, events, waysides] = await Promise.all([
+		const [venues, events] = await Promise.all([
 			getHolstonRoadVenues(getDbBinding(loaderArgs)),
 			getHolstonRoadEvents(getDbBinding(loaderArgs)),
-			getHolstonRoadWaysides(getDbBinding(loaderArgs)),
 		]);
 
 		return {
@@ -35,7 +24,7 @@ export const Route = createFileRoute("/guides/$slug")({
 			relatedGuides: getRelatedGuides(guide),
 			relatedVenues: getGuideVenues(guide, venues),
 			relatedEvents: getGuideEvents(guide, events),
-			relatedWaysides: getGuideWaysides(guide, waysides),
+			relatedWaysides: [],
 		};
 	},
 	head: ({ loaderData }) => {

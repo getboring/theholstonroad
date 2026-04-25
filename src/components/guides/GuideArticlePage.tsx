@@ -215,36 +215,38 @@ export default function GuideArticlePage({
 							</section>
 						))}
 
-						<section className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
-							<div className="flex flex-col gap-2">
-								<p className="text-sm font-semibold uppercase tracking-[0.2em] text-burgundy-700">
-									Read deeper
-								</p>
-								<h2 className="font-display text-3xl font-bold text-stone-900">
-									Story chapters that support this guide
-								</h2>
-							</div>
+						{relatedWaysides.length > 0 ? (
+							<section className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
+								<div className="flex flex-col gap-2">
+									<p className="text-sm font-semibold uppercase tracking-[0.2em] text-burgundy-700">
+										Read deeper
+									</p>
+									<h2 className="font-display text-3xl font-bold text-stone-900">
+										Story chapters that support this guide
+									</h2>
+								</div>
 
-							<div className="mt-6 grid gap-4 md:grid-cols-2">
-								{relatedWaysides.map((wayside) => (
-									<Link
-										key={wayside.id}
-										to={getChapterHref(wayside.slug)}
-										className="group rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:border-burgundy-300 hover:bg-white"
-									>
-										<p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
-											Trail chapter
-										</p>
-										<h3 className="mt-2 font-display text-2xl font-bold text-stone-900 transition group-hover:text-burgundy-700">
-											{wayside.name}
-										</h3>
-										<p className="mt-3 text-sm leading-relaxed text-stone-600">
-											{wayside.content?.summary ?? "Read the full chapter."}
-										</p>
-									</Link>
-								))}
-							</div>
-						</section>
+								<div className="mt-6 grid gap-4 md:grid-cols-2">
+									{relatedWaysides.map((wayside) => (
+										<Link
+											key={wayside.id}
+											to={getChapterHref(wayside.slug)}
+											className="group rounded-2xl border border-stone-200 bg-stone-50 p-5 transition hover:border-burgundy-300 hover:bg-white"
+										>
+											<p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
+												Trail chapter
+											</p>
+											<h3 className="mt-2 font-display text-2xl font-bold text-stone-900 transition group-hover:text-burgundy-700">
+												{wayside.name}
+											</h3>
+											<p className="mt-3 text-sm leading-relaxed text-stone-600">
+												{wayside.content?.summary ?? "Read the full chapter."}
+											</p>
+										</Link>
+									))}
+								</div>
+							</section>
+						) : null}
 
 						<section className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
 							<div className="flex flex-col gap-2">

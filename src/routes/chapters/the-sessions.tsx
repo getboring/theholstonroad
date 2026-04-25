@@ -71,13 +71,13 @@ function ChapterSessions() {
                 <p className="text-sm text-stone-600">Bristol, VA/TN — Museum & recording legacy</p>
               </div>
             </Link>
-            <Link to="/sites" className="group flex gap-4 rounded-xl border border-stone-200 bg-white p-5 transition hover:shadow-md">
+            <Link to="/sites/$slug" params={{ slug: 'paramount-bristol' }} className="group flex gap-4 rounded-xl border border-stone-200 bg-white p-5 transition hover:shadow-md">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-burgundy-100 text-burgundy-700">
                 <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold text-stone-900 group-hover:text-burgundy-700 transition">Historic 408 State Street</h3>
-                <p className="text-sm text-stone-600">Bristol, TN — Original Sessions location</p>
+                <h3 className="font-display text-lg font-bold text-stone-900 group-hover:text-burgundy-700 transition">Paramount Bristol</h3>
+                <p className="text-sm text-stone-600">Bristol, TN — Historic theater on State Street</p>
               </div>
             </Link>
           </div>

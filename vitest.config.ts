@@ -6,6 +6,8 @@ export default defineConfig({
 		tsconfigPaths: true,
 	},
 	test: {
+		// Keep Vitest on unit/component tests only. Browser E2E specs live in e2e/ and run via Playwright.
+		include: ['src/**/*.test.{ts,tsx}'],
 		// React Testing Library needs a DOM-like environment. This avoids document/window undefined
 		// failures when we add route and component tests.
 		environment: 'jsdom',
@@ -13,6 +15,6 @@ export default defineConfig({
 		// Keep CI green until the first test files land.
 		passWithNoTests: true,
 		// Ignore built output so Vitest does not discover generated server/client bundles.
-		exclude: ['dist/**', 'node_modules/**'],
+		exclude: ['dist/**', 'node_modules/**', 'e2e/**'],
 	},
 })

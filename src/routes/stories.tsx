@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { BookOpen, ArrowRight, Mic, Radio } from 'lucide-react'
+import { BookOpen, ArrowRight, Mic, Radio, Mail } from 'lucide-react'
 import AudioPlayer from '../components/AudioPlayer'
+import NewsletterSignup from '../components/NewsletterSignup'
 import { createPageHead } from '../lib/seo'
 
 export const Route = createFileRoute('/stories')({
@@ -66,7 +67,7 @@ const storyChapters = [
   {
     title: 'Rhythm & Roots',
     href: '/chapters/the-festival',
-    excerpt: 'How a downtown festival became one of the region’s clearest signs that the music is still alive.',
+    excerpt: 'How a downtown festival became one of the region\'s clearest signs that the music is still alive.',
   },
   {
     title: 'The Next Generation',
@@ -82,8 +83,8 @@ function StoriesPage() {
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="mb-6 font-display text-4xl font-bold tracking-tight sm:text-6xl">Stories</h1>
           <p className="mx-auto max-w-2xl text-lg leading-relaxed text-burgundy-200">
-            The trail chapters are live now. Audio stories are still in production, and they’ll
-            appear here as they’re ready.
+            The trail chapters are live now. Audio stories are still in production, and they&rsquo;ll
+            appear here as they&rsquo;re ready.
           </p>
         </div>
       </section>
@@ -98,7 +99,7 @@ function StoriesPage() {
               </h2>
             </div>
             <p className="mb-6 max-w-3xl text-sm leading-relaxed text-stone-600">
-              These are the first story topics planned for the listening experience. We’ll replace
+              These are the first story topics planned for the listening experience. We&rsquo;ll replace
               the placeholders below with live audio as each episode is finished.
             </p>
             <div className="grid gap-4 md:grid-cols-2">
@@ -146,8 +147,8 @@ function StoriesPage() {
               <h2 className="font-display text-2xl font-bold">The Back Porch Podcast</h2>
             </div>
             <p className="mb-6 max-w-xl text-burgundy-200">
-              We’re still scoping the first interview run with musicians, venue owners, and
-              historians. Join the newsletter and we’ll announce it when the first season is ready.
+              We&rsquo;re still scoping the first interview run with musicians, venue owners, and
+              historians. Join the newsletter and we&rsquo;ll announce it when the first season is ready.
             </p>
             <div className="flex flex-wrap gap-3">
               <span className="rounded-full bg-burgundy-700 px-4 py-2 text-sm">Launch updates</span>
@@ -155,8 +156,30 @@ function StoriesPage() {
               <span className="rounded-full bg-burgundy-700 px-4 py-2 text-sm">Behind-the-scenes notes</span>
             </div>
           </div>
+
+          <div className="rounded-2xl border border-stone-200 bg-white p-8 text-center">
+            <div className="mx-auto max-w-xl">
+              <Mail className="mx-auto mb-4 h-8 w-8 text-burgundy-600" />
+              <h2 className="font-display text-2xl font-bold text-stone-900">
+                Get notified when audio stories drop
+              </h2>
+              <p className="mt-3 text-stone-600">
+                The Back Porch Dispatch goes out every Tuesday with trail updates, live music picks,
+                and announcements when new audio stories are ready.
+              </p>
+              <Link
+                to="/"
+                hash="newsletter"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-burgundy-700 px-6 py-3 font-medium text-white transition hover:bg-burgundy-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-600 focus-visible:ring-offset-2"
+              >
+                Join the dispatch <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
+
+      <NewsletterSignup />
     </main>
   )
 }

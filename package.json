@@ -11,6 +11,7 @@
 		"build": "pnpm seo:generate && vite build",
 		"preview": "npm run build && vite preview",
 		"test": "vitest run",
+		"test:e2e": "playwright test",
 		"deploy": "npm run build && node scripts/patch-worker-entry.js && wrangler deploy",
 		"cf-typegen": "wrangler types",
 		"db:generate": "drizzle-kit generate",
@@ -46,6 +47,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.13",
 		"@cloudflare/vitest-pool-workers": "^0.15.0",
+		"@playwright/test": "^1.59.1",
 		"@rsbuild/core": "^2.0.1",
 		"@tailwindcss/typography": "^0.5.16",
 		"@tanstack/devtools-vite": "latest",
