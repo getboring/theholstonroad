@@ -2,9 +2,9 @@
 
 ## Live URL
 
-**Canonical production URL:** https://theholstonroad.org
+**Current production URL:** https://theholstonroad.codyboring.workers.dev
 
-**Workers runtime URL:** https://theholstonroad.codyboring.workers.dev
+**Custom domain status:** `theholstonroad.org` is not attached yet because this Cloudflare account does not currently have that zone. Until the zone exists, use the Workers URL as the canonical production URL.
 
 ---
 
@@ -93,10 +93,10 @@ pnpm deploy
 
 This runs: `build` → `patch-worker-entry.js` → `wrangler deploy`
 
-For the production canonical domain, run:
+To force an explicit canonical URL, run:
 
 ```bash
-VITE_SITE_URL=https://theholstonroad.org pnpm deploy
+VITE_SITE_URL=https://theholstonroad.codyboring.workers.dev pnpm deploy
 ```
 
 ### Manual deploy
@@ -155,7 +155,7 @@ Expected: `{"success":true,"alreadySubscribed":false}` (first time) or `{"succes
 ### SEO elements
 
 ```bash
-# Verify canonical link (should use the configured VITE_SITE_URL, not necessarily workers.dev)
+# Verify canonical link (should use the configured VITE_SITE_URL)
 curl -s https://theholstonroad.codyboring.workers.dev/the-trail | grep -o '<link rel="canonical"[^>]*>'
 
 # Verify JSON-LD structured data
@@ -176,13 +176,17 @@ guide pages.
 
 ## 5. Custom Domain
 
-After first deploy:
+`theholstonroad.org` is not available in this Cloudflare account yet, so it cannot be attached to
+the Worker today.
+
+When the zone exists in Cloudflare:
 1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
-2. Workers & Pages → `theholstonroad`
-3. Settings → Domains & Routes
-4. Add custom domain (e.g., `theholstonroad.org`)
-5. Rebuild with `VITE_SITE_URL=https://your-domain.com pnpm build` so canonicals, JSON-LD,
-   `robots.txt`, and `sitemap.xml` all use the production domain. Set the same variable in CI so
+2. Add or transfer the `theholstonroad.org` zone into this account
+3. Workers & Pages → `theholstonroad`
+4. Settings → Domains & Routes
+5. Add the custom domain
+6. Rebuild with `VITE_SITE_URL=https://your-domain.com pnpm build` so canonicals, JSON-LD,
+   `robots.txt`, and `sitemap.xml` all use the new production domain. Set the same variable in CI so
    automated deploys generate matching SEO assets.
 
 ---

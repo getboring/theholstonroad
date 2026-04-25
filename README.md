@@ -5,9 +5,9 @@
 
 > A music heritage trail for Northeast Tennessee — from the 1927 Bristol Sessions to the stages of today.
 
-**Primary Domain:** [https://theholstonroad.org](https://theholstonroad.org)
+**Live Production URL:** [https://theholstonroad.codyboring.workers.dev](https://theholstonroad.codyboring.workers.dev)
 
-**Workers Runtime URL:** [https://theholstonroad.codyboring.workers.dev](https://theholstonroad.codyboring.workers.dev)
+**Custom Domain Status:** `theholstonroad.org` is planned, but the Cloudflare zone is not configured in this account yet. Until that exists, production canonicals and generated SEO assets should use the Workers URL above.
 
 **Canonical Base URL:** `src/lib/seo.ts` is the single source of truth. It resolves
 `VITE_SITE_URL` first, then `SITE_URL`, and finally falls back to the Workers URL above. `pnpm build`
@@ -118,8 +118,8 @@ pnpm dev
 # Build with Workers fallback URL
 pnpm build
 
-# Build with production canonical domain
-VITE_SITE_URL=https://theholstonroad.org pnpm build
+# Build with an explicit canonical URL
+VITE_SITE_URL=https://theholstonroad.codyboring.workers.dev pnpm build
 
 # Deploy to Cloudflare (builds + patches + deploys)
 pnpm deploy
@@ -327,7 +327,7 @@ To publish audio, pass an `audioUrl` prop to `AudioPlayer` and the component wil
 pnpm deploy
 
 # Deploy with production canonical domain
-VITE_SITE_URL=https://theholstonroad.org pnpm deploy
+VITE_SITE_URL=https://theholstonroad.codyboring.workers.dev pnpm deploy
 ```
 
 Or manually:
