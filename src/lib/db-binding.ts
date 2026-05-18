@@ -11,22 +11,22 @@
  * framework's context shape changes between versions.
  */
 export function getDbBinding(params: unknown): D1Database {
-	const serverContext = (params as any)?.serverContext
+	const serverContext = (params as any)?.serverContext;
 	if (serverContext?.cloudflare?.env?.DB) {
-		return serverContext.cloudflare.env.DB as D1Database
+		return serverContext.cloudflare.env.DB as D1Database;
 	}
 
-	const routeContext = (params as any)?.context
+	const routeContext = (params as any)?.context;
 	if (routeContext?.cloudflare?.env?.DB) {
-		return routeContext.cloudflare.env.DB as D1Database
+		return routeContext.cloudflare.env.DB as D1Database;
 	}
 
-	const prodEnv = (process as any).env
+	const prodEnv = (process as any).env;
 	if (prodEnv?.DB) {
-		return prodEnv.DB as D1Database
+		return prodEnv.DB as D1Database;
 	}
 
 	throw new Error(
 		"D1 database binding 'DB' not found. Make sure it's configured in wrangler.jsonc.",
-	)
+	);
 }

@@ -1,61 +1,65 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { format, isAfter, startOfDay } from 'date-fns'
-import { Calendar, MapPin } from 'lucide-react'
-import { z } from 'zod'
-import { getHolstonRoadEvents, getHolstonRoadVenues } from '../../db/queries'
-import { formatVenueTypeLabel, getVenueCapacity, getVenueEvents, enrichEvents } from '../../logic/planning'
-import { getDbBinding } from '../../lib/db-binding'
-import VenuePlaceholder from '../../components/VenuePlaceholder'
-import { createPageHead } from '../../lib/seo'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { format, isAfter, startOfDay } from "date-fns";
+import { Calendar, MapPin } from "lucide-react";
+import { z } from "zod";
+import VenuePlaceholder from "../../components/VenuePlaceholder";
+import { getHolstonRoadEvents, getHolstonRoadVenues } from "../../db/queries";
+import { getDbBinding } from "../../lib/db-binding";
+import { createPageHead } from "../../lib/seo";
+import {
+	enrichEvents,
+	formatVenueTypeLabel,
+	getVenueCapacity,
+	getVenueEvents,
+} from "../../logic/planning";
 
 const sitesSearchSchema = z.object({
-	city: z.string().default('all'),
-	type: z.enum(['all', 'major', 'affiliated', 'festival', 'wayside', 'virtual']).default('all'),
-	eventful: z.enum(['all', 'recurring', 'upcoming']).default('all'),
-})
+	city: z.string().default("all"),
+	type: z.enum(["all", "major", "affiliated", "festival", "wayside", "virtual"]).default("all"),
+	eventful: z.enum(["all", "recurring", "upcoming"]).default("all"),
+});
 
-export const Route = createFileRoute('/sites/')({
+export const Route = createFileRoute("/sites/")({
 	validateSearch: sitesSearchSchema,
 	component: SitesPage,
 	loader: async (loaderArgs) => {
 		const [venues, events] = await Promise.all([
 			getHolstonRoadVenues(getDbBinding(loaderArgs)),
 			getHolstonRoadEvents(getDbBinding(loaderArgs)),
-		])
+		]);
 
-		return { venues, events }
+		return { venues, events };
 	},
 	head: () =>
 		createPageHead({
-			title: 'Venues — The Holston Road',
+			title: "Venues — The Holston Road",
 			description:
-				'Explore the venues and music stops on The Holston Road, from anchor destinations to smaller rooms across Northeast Tennessee.',
-			path: '/sites',
+				"Explore the venues and music stops on The Holston Road, from anchor destinations to smaller rooms across Northeast Tennessee.",
+			path: "/sites",
 		}),
-})
+});
 
 function SitesPage() {
-	const { venues, events } = Route.useLoaderData()
-	const search = Route.useSearch()
-	const today = startOfDay(new Date())
-	const eventDetails = enrichEvents(events, venues)
+	const { venues, events } = Route.useLoaderData();
+	const search = Route.useSearch();
+	const today = startOfDay(new Date());
+	const eventDetails = enrichEvents(events, venues);
 	const cityOptions = Array.from(
 		new Set(venues.map((venue) => venue.city).filter((city): city is string => Boolean(city))),
-	).sort((left, right) => left.localeCompare(right))
+	).sort((left, right) => left.localeCompare(right));
 	const planningByVenue = new Map(
 		venues.map((venue) => {
-			const relatedEvents = getVenueEvents(venue, eventDetails)
-			const recurringEvents = relatedEvents.filter(({ event }) => event.isRecurring)
+			const relatedEvents = getVenueEvents(venue, eventDetails);
+			const recurringEvents = relatedEvents.filter(({ event }) => event.isRecurring);
 			const upcomingEvents = relatedEvents
 				.filter(
 					({ event }) =>
-						!event.isRecurring &&
-						isAfter(new Date(event.endDate ?? event.startDate), today),
+						!event.isRecurring && isAfter(new Date(event.endDate ?? event.startDate), today),
 				)
 				.sort(
 					(left, right) =>
 						new Date(left.event.startDate).getTime() - new Date(right.event.startDate).getTime(),
-				)
+				);
 
 			return [
 				venue.id,
@@ -64,31 +68,31 @@ function SitesPage() {
 					recurringEvents,
 					upcomingEvents,
 				},
-			]
+			];
 		}),
-	)
+	);
 	const filteredVenues = venues.filter((venue) => {
-		const planning = planningByVenue.get(venue.id)
-		const matchesCity = search.city === 'all' || venue.city === search.city
-		const matchesType = search.type === 'all' || venue.type === search.type
+		const planning = planningByVenue.get(venue.id);
+		const matchesCity = search.city === "all" || venue.city === search.city;
+		const matchesType = search.type === "all" || venue.type === search.type;
 		const matchesEventful =
-			search.eventful === 'all' ||
-			(search.eventful === 'recurring' && (planning?.recurringEvents.length ?? 0) > 0) ||
-			(search.eventful === 'upcoming' && (planning?.upcomingEvents.length ?? 0) > 0)
+			search.eventful === "all" ||
+			(search.eventful === "recurring" && (planning?.recurringEvents.length ?? 0) > 0) ||
+			(search.eventful === "upcoming" && (planning?.upcomingEvents.length ?? 0) > 0);
 
-		return matchesCity && matchesType && matchesEventful
-	})
+		return matchesCity && matchesType && matchesEventful;
+	});
 	const groupedByCity = filteredVenues.reduce(
 		(accumulator, venue) => {
-			const group = venue.city || 'Around the region'
+			const group = venue.city || "Around the region";
 			if (!accumulator[group]) {
-				accumulator[group] = []
+				accumulator[group] = [];
 			}
-			accumulator[group].push(venue)
-			return accumulator
+			accumulator[group].push(venue);
+			return accumulator;
 		},
 		{} as Record<string, typeof filteredVenues>,
-	)
+	);
 
 	return (
 		<main>
@@ -98,9 +102,9 @@ function SitesPage() {
 						Venues
 					</h1>
 					<p className="mx-auto max-w-2xl text-lg leading-relaxed text-burgundy-200">
-						The places currently featured on The Holston Road. Browse by city, narrow to
-						the kind of stop you want, and see which venues already have regular or
-						upcoming happenings tied to them.
+						The places currently featured on The Holston Road. Browse by city, narrow to the kind of
+						stop you want, and see which venues already have regular or upcoming happenings tied to
+						them.
 					</p>
 				</div>
 			</section>
@@ -125,7 +129,7 @@ function SitesPage() {
 						<div className="flex flex-col gap-2">
 							<p className="text-sm font-medium text-stone-700">City</p>
 							<div className="flex flex-wrap gap-2">
-								{['all', ...cityOptions].map((city) => (
+								{["all", ...cityOptions].map((city) => (
 									<Link
 										key={city}
 										to="/sites"
@@ -135,11 +139,11 @@ function SitesPage() {
 										})}
 										className={`rounded-full px-3 py-1.5 text-sm transition ${
 											search.city === city
-												? 'bg-burgundy-700 text-white'
-												: 'bg-white text-stone-700 hover:bg-stone-100'
+												? "bg-burgundy-700 text-white"
+												: "bg-white text-stone-700 hover:bg-stone-100"
 										}`}
 									>
-										{city === 'all' ? 'All cities' : city}
+										{city === "all" ? "All cities" : city}
 									</Link>
 								))}
 							</div>
@@ -149,24 +153,24 @@ function SitesPage() {
 							<p className="text-sm font-medium text-stone-700">Venue type</p>
 							<div className="flex flex-wrap gap-2">
 								{[
-									{ value: 'all', label: 'All types' },
-									{ value: 'major', label: 'Anchor venues' },
-									{ value: 'affiliated', label: 'Road stops' },
-									{ value: 'festival', label: 'Festivals' },
-									{ value: 'wayside', label: 'Waysides' },
-									{ value: 'virtual', label: 'Virtual' },
+									{ value: "all", label: "All types" },
+									{ value: "major", label: "Anchor venues" },
+									{ value: "affiliated", label: "Road stops" },
+									{ value: "festival", label: "Festivals" },
+									{ value: "wayside", label: "Waysides" },
+									{ value: "virtual", label: "Virtual" },
 								].map((option) => (
 									<Link
 										key={option.value}
 										to="/sites"
 										search={(previous) => ({
 											...previous,
-											type: option.value as (typeof search.type),
+											type: option.value as typeof search.type,
 										})}
 										className={`rounded-full px-3 py-1.5 text-sm transition ${
 											search.type === option.value
-												? 'bg-burgundy-700 text-white'
-												: 'bg-white text-stone-700 hover:bg-stone-100'
+												? "bg-burgundy-700 text-white"
+												: "bg-white text-stone-700 hover:bg-stone-100"
 										}`}
 									>
 										{option.label}
@@ -179,21 +183,21 @@ function SitesPage() {
 							<p className="text-sm font-medium text-stone-700">Planning utility</p>
 							<div className="flex flex-wrap gap-2">
 								{[
-									{ value: 'all', label: 'All venues' },
-									{ value: 'recurring', label: 'Has recurring music' },
-									{ value: 'upcoming', label: 'Has upcoming dated event' },
+									{ value: "all", label: "All venues" },
+									{ value: "recurring", label: "Has recurring music" },
+									{ value: "upcoming", label: "Has upcoming dated event" },
 								].map((option) => (
 									<Link
 										key={option.value}
 										to="/sites"
 										search={(previous) => ({
 											...previous,
-											eventful: option.value as (typeof search.eventful),
+											eventful: option.value as typeof search.eventful,
 										})}
 										className={`rounded-full px-3 py-1.5 text-sm transition ${
 											search.eventful === option.value
-												? 'bg-burgundy-700 text-white'
-												: 'bg-white text-stone-700 hover:bg-stone-100'
+												? "bg-burgundy-700 text-white"
+												: "bg-white text-stone-700 hover:bg-stone-100"
 										}`}
 									>
 										{option.label}
@@ -226,7 +230,7 @@ function SitesPage() {
 									<div>
 										<h2 className="font-display text-2xl font-bold text-stone-900">{city}</h2>
 										<p className="text-sm text-stone-600">
-											{cityVenues.length} stop{cityVenues.length === 1 ? '' : 's'} in this part of
+											{cityVenues.length} stop{cityVenues.length === 1 ? "" : "s"} in this part of
 											the road
 										</p>
 									</div>
@@ -237,9 +241,9 @@ function SitesPage() {
 
 								<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 									{cityVenues.map((venue) => {
-										const planning = planningByVenue.get(venue.id)
-										const capacity = getVenueCapacity(venue)
-										const nextUpcomingEvent = planning?.upcomingEvents[0]
+										const planning = planningByVenue.get(venue.id);
+										const capacity = getVenueCapacity(venue);
+										const nextUpcomingEvent = planning?.upcomingEvents[0];
 
 										return (
 											<Link
@@ -259,7 +263,7 @@ function SitesPage() {
 															<MapPin className="h-4 w-4 text-burgundy-600" />
 															<span className="text-xs font-medium uppercase tracking-wide text-stone-500">
 																{venue.city}
-																{venue.state ? `, ${venue.state}` : ''}
+																{venue.state ? `, ${venue.state}` : ""}
 															</span>
 														</div>
 														<h3 className="mb-2 font-display text-base font-bold text-stone-900 transition group-hover:text-burgundy-700">
@@ -297,15 +301,18 @@ function SitesPage() {
 															<div className="mt-2 flex flex-col gap-2 text-sm text-stone-700">
 																{planning.recurringEvents.length > 0 && (
 																	<p>
-																		{planning.recurringEvents.length} recurring music
-																		night{planning.recurringEvents.length === 1 ? '' : 's'} linked here
+																		{planning.recurringEvents.length} recurring music night
+																		{planning.recurringEvents.length === 1 ? "" : "s"} linked here
 																	</p>
 																)}
 																{nextUpcomingEvent && (
 																	<p className="flex items-center gap-2">
 																		<Calendar className="h-4 w-4 text-burgundy-600" />
-																		Next dated event{' '}
-																		{format(new Date(nextUpcomingEvent.event.startDate), 'MMM d, yyyy')}
+																		Next dated event{" "}
+																		{format(
+																			new Date(nextUpcomingEvent.event.startDate),
+																			"MMM d, yyyy",
+																		)}
 																	</p>
 																)}
 															</div>
@@ -313,7 +320,7 @@ function SitesPage() {
 													)}
 												</div>
 											</Link>
-										)
+										);
 									})}
 								</div>
 							</div>
@@ -321,5 +328,5 @@ function SitesPage() {
 				</div>
 			</section>
 		</main>
-	)
+	);
 }
