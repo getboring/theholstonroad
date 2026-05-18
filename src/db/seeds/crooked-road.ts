@@ -3,7 +3,7 @@
  * This is Tenant #1 for the Trailhead platform.
  */
 
-import { ulid } from "ulidx"
+import { ulid } from "ulidx";
 
 // =============================================================================
 // TRAIL
@@ -52,9 +52,9 @@ export const trail = {
 		mission:
 			"To support economic development in Southwest Virginia by promoting this region's rich heritage of traditional music.",
 	},
-}
+};
 
-const trailId = trail.id
+const trailId = trail.id;
 
 // =============================================================================
 // MAJOR VENUES
@@ -74,7 +74,8 @@ export const majorVenues = [
 		state: "VA",
 		features: ["Museum", "Festival", "Radio Station", "Educational Programs"],
 		metadata: {
-			history: "Tells the story of the 1927 Bristol Sessions featuring first recordings of the Carter Family and Jimmie Rodgers",
+			history:
+				"Tells the story of the 1927 Bristol Sessions featuring first recordings of the Carter Family and Jimmie Rodgers",
 			anniversary: "10th anniversary celebrated 2024",
 		},
 	},
@@ -91,7 +92,8 @@ export const majorVenues = [
 		state: "VA",
 		features: ["Live Performances", "Music Exhibits", "Jam Sessions", "Hiking Trails"],
 		metadata: {
-			history: "Masterminded by the late Joe Wilson, music historian, as part of the Blue Ridge Parkway",
+			history:
+				"Masterminded by the late Joe Wilson, music historian, as part of the Blue Ridge Parkway",
 		},
 	},
 	{
@@ -107,7 +109,8 @@ export const majorVenues = [
 		state: "VA",
 		features: ["800-Seat Facility", "Weekly Saturday Shows", "Acoustic Only", "Dance Floor"],
 		metadata: {
-			history: "Legacy began in 1927 with A.P., Sara, and Maybelle Carter. The trio recorded 300 songs and launched the trajectory of country music.",
+			history:
+				"Legacy began in 1927 with A.P., Sara, and Maybelle Carter. The trio recorded 300 songs and launched the trajectory of country music.",
 			anniversary: "50-year anniversary celebrated August 3, 2024",
 			capacity: 800,
 		},
@@ -200,7 +203,12 @@ export const majorVenues = [
 		shortDescription: "Visitor center, artisan marketplace, and monthly jam in Abingdon",
 		city: "Abingdon",
 		state: "VA",
-		features: ["Visitor Center", "Artisan Marketplace", "First Thursdays Jam", "5,000 Artisan Pieces"],
+		features: [
+			"Visitor Center",
+			"Artisan Marketplace",
+			"First Thursdays Jam",
+			"5,000 Artisan Pieces",
+		],
 	},
 	{
 		id: ulid(),
@@ -218,7 +226,7 @@ export const majorVenues = [
 			history: "English scholar Cecil Sharp collected ballads in Franklin County in 1916",
 		},
 	},
-]
+];
 
 // =============================================================================
 // WAYSIDE EXHIBITS
@@ -238,10 +246,21 @@ export const waysides = [
 			narrative:
 				"Floyd County is among the most multi-faceted of America's small places, honoring community traditions while welcoming cultural expressions from elsewhere. Its diverse population includes an older farming community, new organic growers, creative artists, skilled tradeworkers, and growing numbers of urban commuters. The County also has several respected makers of violins and fretted stringed instruments. For many, music-making has always been a family tradition. Travelers from around the world join local folks in dancing to and enjoying old-time, gospel, and bluegrass music every Friday night at The Floyd Country Store—weekly gatherings that date through generations. The noted Floyd County Ramblers recorded an arrangement of 'Step Stone' on the Victor label in 1930, a version that was later adopted in several African countries.",
 			historicalFigures: [
-				{ name: "Newton Hylton", description: "Banjo maker, blacksmith, farmer, furniture maker, millwright, and country dentist who rebuilt the water wheel for historic Mabry Mill in 1945." },
+				{
+					name: "Newton Hylton",
+					description:
+						"Banjo maker, blacksmith, farmer, furniture maker, millwright, and country dentist who rebuilt the water wheel for historic Mabry Mill in 1945.",
+				},
 			],
-			nearbyAttractions: ["Mabry Mill (most photographed site on Blue Ridge Parkway)", "Hiking trails", "Bed and breakfasts", "Wineries", "Specialty shops"],
-			quote: "Looking for something? Just ask, and we'll be sure to point you in the right direction.",
+			nearbyAttractions: [
+				"Mabry Mill (most photographed site on Blue Ridge Parkway)",
+				"Hiking trails",
+				"Bed and breakfasts",
+				"Wineries",
+				"Specialty shops",
+			],
+			quote:
+				"Looking for something? Just ask, and we'll be sure to point you in the right direction.",
 		},
 		isVirtual: false,
 	},
@@ -258,7 +277,11 @@ export const waysides = [
 			narrative:
 				"In 1850 Grayson County was in the midst of controversy concerning the location of the county seat. As a compromise between two rival camps, a third site was selected and named Independence. One of the most famous fighting units of the Civil War was the Grayson Daredevils, 91 farmers from the Elk Creek community. Tiny places such as Rugby have produced notable musicians for generations. Mill hands from historic Fries on the beautiful New River had a pivotal role in starting the commercial country music industry in the early 1920s.",
 			historicalFigures: [
-				{ name: "Wade Ward", description: "Perhaps the nation's most renowned old-time clawhammer style banjoist. Lived in Independence and welcomed more than 1,000 aspiring banjoists, treating all as members of the Ward family." },
+				{
+					name: "Wade Ward",
+					description:
+						"Perhaps the nation's most renowned old-time clawhammer style banjoist. Lived in Independence and welcomed more than 1,000 aspiring banjoists, treating all as members of the Ward family.",
+				},
 			],
 			nearbyAttractions: ["Historic 1908 Courthouse Museum", "Fries", "Gold Hill"],
 			quote: "",
@@ -278,12 +301,30 @@ export const waysides = [
 			narrative:
 				"Patrick County is named for a fiddler, Patrick Henry, and is where the Piedmont Plateau meets the Blue Ridge Mountains. Settled in Revolutionary times, it has always been a musical place. Stuart, the county seat, is named for a string band leader who was also a Confederate cavalry officer, General J.E.B. Stuart. Famed minstrel banjoist Sam Sweeney was in Stuart's band. Nine local families have produced a huge number of musicians during two centuries: German, English, Ulster Irish, and African-American. These families share a string band music that has proven remarkably durable.",
 			historicalFigures: [
-				{ name: "Spangler Family", description: "One of nine musical families enriching Patrick County traditional music for over 200 years." },
-				{ name: "Bowman Family", description: "One of nine musical families with German, English, Huguenot, Ulster Irish, and African-American ancestry." },
-				{ name: "Shelor Family", description: "Prominent musical family continuing the tradition today." },
+				{
+					name: "Spangler Family",
+					description:
+						"One of nine musical families enriching Patrick County traditional music for over 200 years.",
+				},
+				{
+					name: "Bowman Family",
+					description:
+						"One of nine musical families with German, English, Huguenot, Ulster Irish, and African-American ancestry.",
+				},
+				{
+					name: "Shelor Family",
+					description: "Prominent musical family continuing the tradition today.",
+				},
 			],
-			nearbyAttractions: ["The Pinnacles of Dan", "Lover's Leap", "Mabry Mill", "Covered bridges over Smith River", "J.E.B. Stuart's home at Ararat"],
-			quote: "There's good food here, fine lodging, and if you feel an urge to sing or dance, go ahead.",
+			nearbyAttractions: [
+				"The Pinnacles of Dan",
+				"Lover's Leap",
+				"Mabry Mill",
+				"Covered bridges over Smith River",
+				"J.E.B. Stuart's home at Ararat",
+			],
+			quote:
+				"There's good food here, fine lodging, and if you feel an urge to sing or dance, go ahead.",
 		},
 		isVirtual: false,
 	},
@@ -300,7 +341,11 @@ export const waysides = [
 			narrative:
 				"Known variously through the years as Big Glades, Gladesville, and Gladeville, Wise took its current name in 1924 after Henry Alexander Wise, Governor of Virginia before the Civil War. The coal and lumber industries have shaped life in Wise since the late 1800s. In 1954, Clinch Valley College was formed here and provided valuable access to higher education in the coalfields region. Dr. Papa Joe Smiddy, a devoted educator and much loved old time banjo player served as biology professor, Director, and Chancellor from 1954 to 1985.",
 			historicalFigures: [
-				{ name: "Dr. Papa Joe Smiddy", description: "Devoted educator and old time banjo player. Served as biology professor, Director, and Chancellor of Clinch Valley College from 1954 to 1985." },
+				{
+					name: "Dr. Papa Joe Smiddy",
+					description:
+						"Devoted educator and old time banjo player. Served as biology professor, Director, and Chancellor of Clinch Valley College from 1954 to 1985.",
+				},
 			],
 			nearbyAttractions: ["Wise County Fairgrounds", "University of Virginia's College at Wise"],
 			quote: "",
@@ -316,9 +361,13 @@ export const waysides = [
 		county: "Bland",
 		content: {
 			summary: "Bland County virtual wayside highlighting local musical heritage.",
-			narrative: "Bland County has produced notable musicians including Wesley 'Bane' Boyles who participated in the historic Bristol Sessions.",
+			narrative:
+				"Bland County has produced notable musicians including Wesley 'Bane' Boyles who participated in the historic Bristol Sessions.",
 			historicalFigures: [
-				{ name: "Wesley 'Bane' Boyles", description: "Bland County musician who participated in the Bristol Sessions." },
+				{
+					name: "Wesley 'Bane' Boyles",
+					description: "Bland County musician who participated in the Bristol Sessions.",
+				},
 				{ name: "Darnell Miller", description: "Traditional musician from Bland County." },
 			],
 			nearbyAttractions: ["Rocky Gap Welcome Center"],
@@ -326,7 +375,7 @@ export const waysides = [
 		},
 		isVirtual: true,
 	},
-]
+];
 
 // =============================================================================
 // RECURRING EVENTS
@@ -417,7 +466,7 @@ export const recurringEvents = [
 			contactPhone: "276-220-1036",
 		},
 	},
-]
+];
 
 // =============================================================================
 // SPECIAL EVENTS (April-May 2026)
@@ -430,7 +479,8 @@ export const specialEvents = [
 		venueId: null,
 		slug: "friday-night-jamboree-apr-24",
 		name: "The Friday Night Jamboree at The Floyd Country Store",
-		description: "The legendary Friday Night Jamboree — 40+ years of traditional Appalachian music and dance.",
+		description:
+			"The legendary Friday Night Jamboree — 40+ years of traditional Appalachian music and dance.",
 		startDate: new Date("2026-04-24T18:30:00"),
 		endDate: new Date("2026-04-24T21:30:00"),
 		isRecurring: false,
@@ -442,7 +492,8 @@ export const specialEvents = [
 		venueId: null,
 		slug: "alice-gerrard-floyd",
 		name: "Alice Gerrard with Tatiana Hargreaves & Reed Stutz",
-		description: "Legendary Alice Gerrard performs at The Floyd Country Store with Tatiana Hargreaves and Reed Stutz.",
+		description:
+			"Legendary Alice Gerrard performs at The Floyd Country Store with Tatiana Hargreaves and Reed Stutz.",
 		startDate: new Date("2026-04-25T19:00:00"),
 		endDate: new Date("2026-04-25T21:00:00"),
 		isRecurring: false,
@@ -495,7 +546,7 @@ export const specialEvents = [
 			performers: ["Jeff Little Trio"],
 		},
 	},
-]
+];
 
 // =============================================================================
 // DMO CONTACTS
@@ -503,36 +554,260 @@ export const specialEvents = [
 
 export const dmoContacts = [
 	// West Zone
-	{ id: ulid(), trailId, name: "Abingdon CVB", zone: "west" as const, phone: "276-676-2282", website: "https://visitabingdonvirginia.com/", city: "Abingdon" },
-	{ id: ulid(), trailId, name: "Bristol CVB", zone: "west" as const, phone: "423-989-4850", website: "https://discoverbristol.org/", city: "Bristol" },
-	{ id: ulid(), trailId, name: "Buchanan County Tourism", zone: "west" as const, phone: "276-935-6508", website: "https://buchanancountytourism.com/tourism", city: "Grundy" },
-	{ id: ulid(), trailId, name: "City of Norton", zone: "west" as const, phone: "276-679-1160", website: "https://nortonva.gov/", city: "Norton" },
-	{ id: ulid(), trailId, name: "Town of Damascus", zone: "west" as const, phone: "276-475-3831", website: "https://www.visitdamascus.org/", city: "Damascus" },
-	{ id: ulid(), trailId, name: "Dickenson County", zone: "west" as const, phone: "423-926-6074", website: "https://dickensonva.org/", city: "Clintwood" },
-	{ id: ulid(), trailId, name: "Lee County", zone: "west" as const, phone: "276-346-4629", website: "https://www.ilovelee.org/", city: "Jonesville" },
-	{ id: ulid(), trailId, name: "Russell County", zone: "west" as const, phone: "276-254-0745", website: "https://experiencerussell.com/", city: "Lebanon" },
-	{ id: ulid(), trailId, name: "Scott County", zone: "west" as const, phone: "276-386-6521", website: "https://explorescottcountyva.org/", city: "Gate City" },
-	{ id: ulid(), trailId, name: "Town of Haysi", zone: "west" as const, phone: "276-345-2052", website: "https://haysivirginia.gov/", city: "Haysi" },
-	{ id: ulid(), trailId, name: "Wise County", zone: "west" as const, phone: "276-328-2321", website: "https://visitwisecounty.com/", city: "Wise" },
+	{
+		id: ulid(),
+		trailId,
+		name: "Abingdon CVB",
+		zone: "west" as const,
+		phone: "276-676-2282",
+		website: "https://visitabingdonvirginia.com/",
+		city: "Abingdon",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Bristol CVB",
+		zone: "west" as const,
+		phone: "423-989-4850",
+		website: "https://discoverbristol.org/",
+		city: "Bristol",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Buchanan County Tourism",
+		zone: "west" as const,
+		phone: "276-935-6508",
+		website: "https://buchanancountytourism.com/tourism",
+		city: "Grundy",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "City of Norton",
+		zone: "west" as const,
+		phone: "276-679-1160",
+		website: "https://nortonva.gov/",
+		city: "Norton",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Town of Damascus",
+		zone: "west" as const,
+		phone: "276-475-3831",
+		website: "https://www.visitdamascus.org/",
+		city: "Damascus",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Dickenson County",
+		zone: "west" as const,
+		phone: "423-926-6074",
+		website: "https://dickensonva.org/",
+		city: "Clintwood",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Lee County",
+		zone: "west" as const,
+		phone: "276-346-4629",
+		website: "https://www.ilovelee.org/",
+		city: "Jonesville",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Russell County",
+		zone: "west" as const,
+		phone: "276-254-0745",
+		website: "https://experiencerussell.com/",
+		city: "Lebanon",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Scott County",
+		zone: "west" as const,
+		phone: "276-386-6521",
+		website: "https://explorescottcountyva.org/",
+		city: "Gate City",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Town of Haysi",
+		zone: "west" as const,
+		phone: "276-345-2052",
+		website: "https://haysivirginia.gov/",
+		city: "Haysi",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Wise County",
+		zone: "west" as const,
+		phone: "276-328-2321",
+		website: "https://visitwisecounty.com/",
+		city: "Wise",
+	},
 
 	// Central Zone
-	{ id: ulid(), trailId, name: "Bland County", zone: "central" as const, phone: "276-688-4622", website: "https://www.blandcountyva.gov/", city: "Bland" },
-	{ id: ulid(), trailId, name: "Carroll County", zone: "central" as const, phone: "276-730-3100", website: "https://www.lovecarroll.com/", city: "Hillsville" },
-	{ id: ulid(), trailId, name: "City of Galax", zone: "central" as const, phone: "276-238-8130", website: "https://visitgalax.com/", city: "Galax" },
-	{ id: ulid(), trailId, name: "Grayson County", zone: "central" as const, phone: "276-773-2000", website: "https://www.graysoncountyva.gov/", city: "Independence" },
-	{ id: ulid(), trailId, name: "Smyth County", zone: "central" as const, phone: "276-646-3306", website: "https://visitsmythcountyva.com/", city: "Marion" },
-	{ id: ulid(), trailId, name: "Tazewell County", zone: "central" as const, phone: "800-588-9401", website: "https://visittazewellcounty.org/", city: "Tazewell" },
-	{ id: ulid(), trailId, name: "Town of Marion", zone: "central" as const, phone: "276-378-5026", website: "https://www.marionva.org/", city: "Marion" },
-	{ id: ulid(), trailId, name: "Wytheville CVB", zone: "central" as const, phone: "276-223-3355", website: "https://www.visitwytheville.com/", city: "Wytheville" },
+	{
+		id: ulid(),
+		trailId,
+		name: "Bland County",
+		zone: "central" as const,
+		phone: "276-688-4622",
+		website: "https://www.blandcountyva.gov/",
+		city: "Bland",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Carroll County",
+		zone: "central" as const,
+		phone: "276-730-3100",
+		website: "https://www.lovecarroll.com/",
+		city: "Hillsville",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "City of Galax",
+		zone: "central" as const,
+		phone: "276-238-8130",
+		website: "https://visitgalax.com/",
+		city: "Galax",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Grayson County",
+		zone: "central" as const,
+		phone: "276-773-2000",
+		website: "https://www.graysoncountyva.gov/",
+		city: "Independence",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Smyth County",
+		zone: "central" as const,
+		phone: "276-646-3306",
+		website: "https://visitsmythcountyva.com/",
+		city: "Marion",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Tazewell County",
+		zone: "central" as const,
+		phone: "800-588-9401",
+		website: "https://visittazewellcounty.org/",
+		city: "Tazewell",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Town of Marion",
+		zone: "central" as const,
+		phone: "276-378-5026",
+		website: "https://www.marionva.org/",
+		city: "Marion",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Wytheville CVB",
+		zone: "central" as const,
+		phone: "276-223-3355",
+		website: "https://www.visitwytheville.com/",
+		city: "Wytheville",
+	},
 
 	// East Zone
-	{ id: ulid(), trailId, name: "City of Radford", zone: "east" as const, phone: "540-267-3153", website: "https://www.visitradford.com/", city: "Radford" },
-	{ id: ulid(), trailId, name: "Floyd County", zone: "east" as const, phone: "540-745-4407", website: "https://visitfloydva.com/", city: "Floyd" },
-	{ id: ulid(), trailId, name: "Franklin County", zone: "east" as const, phone: "540-483-3030", website: "https://www.visitfranklincountyva.com/", city: "Rocky Mount" },
-	{ id: ulid(), trailId, name: "Giles County", zone: "east" as const, phone: "540-921-2079", website: "https://virginiasmtnplayground.com/", city: "Pearisburg" },
-	{ id: ulid(), trailId, name: "Montgomery County / Blacksburg / Christiansburg", zone: "east" as const, phone: "540-394-4470", website: "https://gotomontva.com/", city: "Blacksburg" },
-	{ id: ulid(), trailId, name: "Patrick County", zone: "east" as const, phone: "276-694-6094", website: "https://visitpatrickcounty.org/", city: "Stuart" },
-	{ id: ulid(), trailId, name: "Pulaski County", zone: "east" as const, phone: "540-674-1991", website: "https://www.pulaskivatourism.org/", city: "Pulaski" },
-	{ id: ulid(), trailId, name: "Town of Boones Mill", zone: "east" as const, phone: "540-334-5404", website: "https://www.townofboonesmill.org/", city: "Boones Mill" },
-	{ id: ulid(), trailId, name: "Town of Rocky Mount", zone: "east" as const, phone: "540-483-7660", website: "https://rockymountva.org/", city: "Rocky Mount" },
-]
+	{
+		id: ulid(),
+		trailId,
+		name: "City of Radford",
+		zone: "east" as const,
+		phone: "540-267-3153",
+		website: "https://www.visitradford.com/",
+		city: "Radford",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Floyd County",
+		zone: "east" as const,
+		phone: "540-745-4407",
+		website: "https://visitfloydva.com/",
+		city: "Floyd",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Franklin County",
+		zone: "east" as const,
+		phone: "540-483-3030",
+		website: "https://www.visitfranklincountyva.com/",
+		city: "Rocky Mount",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Giles County",
+		zone: "east" as const,
+		phone: "540-921-2079",
+		website: "https://virginiasmtnplayground.com/",
+		city: "Pearisburg",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Montgomery County / Blacksburg / Christiansburg",
+		zone: "east" as const,
+		phone: "540-394-4470",
+		website: "https://gotomontva.com/",
+		city: "Blacksburg",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Patrick County",
+		zone: "east" as const,
+		phone: "276-694-6094",
+		website: "https://visitpatrickcounty.org/",
+		city: "Stuart",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Pulaski County",
+		zone: "east" as const,
+		phone: "540-674-1991",
+		website: "https://www.pulaskivatourism.org/",
+		city: "Pulaski",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Town of Boones Mill",
+		zone: "east" as const,
+		phone: "540-334-5404",
+		website: "https://www.townofboonesmill.org/",
+		city: "Boones Mill",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Town of Rocky Mount",
+		zone: "east" as const,
+		phone: "540-483-7660",
+		website: "https://rockymountva.org/",
+		city: "Rocky Mount",
+	},
+];

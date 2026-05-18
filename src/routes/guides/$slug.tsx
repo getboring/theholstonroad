@@ -3,7 +3,12 @@ import GuideArticlePage from "../../components/guides/GuideArticlePage";
 import { getHolstonRoadEvents, getHolstonRoadVenues } from "../../db/queries";
 import { getDbBinding } from "../../lib/db-binding";
 import { createPageHead, getCanonicalUrl, SITE_NAME } from "../../lib/seo";
-import { getGuideBySlug, getGuideEvents, getGuideVenues, getRelatedGuides } from "../../logic/guides";
+import {
+	getGuideBySlug,
+	getGuideEvents,
+	getGuideVenues,
+	getRelatedGuides,
+} from "../../logic/guides";
 
 export const Route = createFileRoute("/guides/$slug")({
 	component: GuideDetailPage,
