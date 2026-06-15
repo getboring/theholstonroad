@@ -44,6 +44,8 @@ Think of it as the Tri-Cities' answer to [The Crooked Road](https://thecrookedro
 | **ORM** | Drizzle ORM |
 | **Hosting** | Cloudflare Workers |
 | **Build Tool** | Vite 8 + `@cloudflare/vite-plugin` |
+| **E2E Testing** | Playwright (Chromium, Firefox, WebKit, mobile) |
+| **Unit Testing** | Vitest + jsdom + React Testing Library |
 
 ---
 
@@ -51,65 +53,76 @@ Think of it as the Tri-Cities' answer to [The Crooked Road](https://thecrookedro
 
 ```
 ├── src/
-│   ├── routes/              # TanStack Router file-based routes
-│   │   ├── __root.tsx       # Root layout with SEO meta, JSON-LD, canonical links
-│   │   ├── index.tsx        # Homepage
-│   │   ├── about.tsx        # Mission + music story
-│   │   ├── the-trail.tsx    # Trail overview + route stats
-│   │   ├── events.tsx       # Event calendar
-│   │   ├── stories.tsx      # Audio stories + articles
-│   │   ├── guides/          # SEO-ready planning guides + guide detail pages
-│   │   ├── chapters/        # 5 music story chapters
+│   ├── routes/                    # TanStack Router file-based routes
+│   │   ├── __root.tsx             # Root layout with SEO meta, JSON-LD, canonical links
+│   │   ├── index.tsx              # Homepage
+│   │   ├── about.tsx              # Mission + music story + partner proof
+│   │   ├── the-trail.tsx          # Trail overview + route stats
+│   │   ├── events.tsx             # Event calendar
+│   │   ├── stories.tsx            # Audio stories + chapter links + newsletter CTA
+│   │   ├── guides/                # SEO-ready planning guides
+│   │   │   ├── index.tsx          # Guides hub page
+│   │   │   └── $slug.tsx          # Guide detail pages
+│   │   ├── chapters/              # 5 music story chapters
 │   │   │   ├── the-sound.tsx           # Chapter 1: Appalachian roots
 │   │   │   ├── the-railroad.tsx        # Chapter 2: How musicians traveled
 │   │   │   ├── the-sessions.tsx        # Chapter 3: 1927 Bristol Sessions
 │   │   │   ├── the-festival.tsx        # Chapter 4: Rhythm & Roots
 │   │   │   └── the-next-generation.tsx # Chapter 5: ETSU Bluegrass
 │   │   ├── api/
-│   │   │   └── subscribe.ts # Newsletter signup server route
-│   │   └── sites/           # Venue directory + detail
+│   │   │   └── subscribe.ts       # Newsletter signup server route (POST /api/subscribe)
+│   │   └── sites/                 # Venue directory + detail
 │   │       ├── index.tsx
 │   │       └── $slug.tsx
-│   ├── components/          # Shared UI components
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── NewsletterSignup.tsx
-│   │   ├── TrailRouteExperience.tsx # Map-like route discovery UI
-│   │   ├── VenuePlaceholder.tsx     # SVG placeholder images
-│   │   ├── AudioPlayer.tsx          # Audio player with "coming soon" state
-│   │   ├── NotFoundPage.tsx         # 404 page (router default)
-│   │   ├── ErrorPage.tsx            # Error boundary (router default)
-│   │   ├── LoadingSpinner.tsx       # Loading state (router default)
-│   │   └── guides/                  # Reusable guide cards + article template
-│   ├── db/                  # Database schema + queries
-│   │   ├── schema.ts        # Drizzle schema (shared with Trailhead)
-│   │   ├── queries.ts       # Holston Road-specific queries
-│   │   └── seeds/           # Seed data for holston-road trail
-│   ├── lib/                 # Utilities
-│   │   ├── db-binding.ts    # Defensive D1 binding extractor
-│   │   ├── colors.ts        # Brand color system
-│   │   └── seo.ts           # Central site URL + SEO helpers
-│   ├── logic/               # Planning, guides, and partner-proof content logic
-│   ├── router.tsx           # Router config with default pending/not-found/error components
-│   └── styles.css           # Tailwind + custom fonts
+│   ├── components/                # Shared UI components
+│   │   ├── Header.tsx             # Sticky header with desktop nav + mobile <details> menu
+│   │   ├── Footer.tsx             # Site footer with nav links + social icons
+│   │   ├── NewsletterSignup.tsx   # Client-side newsletter form (react-hook-form + zod)
+│   │   ├── TrailRouteExperience.tsx # SVG route preview + venue discovery panel
+│   │   ├── VenuePlaceholder.tsx   # SVG placeholder images with geometric patterns
+│   │   ├── AudioPlayer.tsx        # Audio player with "coming soon" state
+│   │   ├── NotFoundPage.tsx       # 404 page (router default)
+│   │   ├── ErrorPage.tsx          # Error boundary (router default)
+│   │   ├── LoadingSpinner.tsx     # Loading state (router default) with a11y attributes
+│   │   └── guides/
+│   │       ├── GuideArticlePage.tsx   # Full guide article template with JSON-LD
+│   │       └── GuideCard.tsx          # Guide preview card for hub listing
+│   ├── db/                        # Database schema + queries
+│   │   ├── schema.ts              # Drizzle schema (shared with Trailhead)
+│   │   ├── queries.ts             # Holston Road-specific D1 queries
+│   │   └── seeds/                 # Seed data
+│   │       ├── holston-road.ts    # Holston Road trail seed data
+│   │       ├── crooked-road.ts    # Crooked Road trail seed data
+│   │       └── runner.ts          # Seed runner script
+│   ├── lib/                       # Utilities
+│   │   ├── db-binding.ts          # Defensive D1 binding extractor (getDbBinding)
+│   │   ├── colors.ts              # Brand color system (OKLCH)
+│   │   └── seo.ts                 # Central site URL + SEO helpers + sitemap entries
+│   ├── logic/                     # Business logic + content data
+│   │   ├── guides.ts              # Guide definitions + content
+│   │   ├── partner-proof.ts       # Regional partner data
+│   │   └── planning.ts            # Planning/itinerary logic
+│   ├── router.tsx                 # Router config with default components
+│   └── styles.css                 # Tailwind + custom fonts + theme
 ├── scripts/
-│   ├── generate-seo-assets.ts # Build-time robots.txt + sitemap.xml generation from src/lib/seo.ts
-│   └── patch-worker-entry.js  # Post-build patch for Cloudflare env bindings
-├── e2e/                     # Playwright end-to-end tests
-│   ├── accessibility.spec.ts
-│   ├── events.spec.ts
-│   ├── guides.spec.ts
-│   ├── layout.spec.ts
-│   ├── navigation.spec.ts
-│   ├── newsletter.spec.ts
-│   └── venues.spec.ts
-├── public/                  # Static assets
+│   ├── generate-seo-assets.ts     # Build-time robots.txt + sitemap.xml generation
+│   └── patch-worker-entry.js      # Post-build patch for Cloudflare env bindings
+├── e2e/                           # Playwright end-to-end tests
+│   ├── accessibility.spec.ts      # h1 presence, focus visibility, console errors
+│   ├── events.spec.ts             # Events page structure
+│   ├── guides.spec.ts             # Guides hub + detail pages
+│   ├── layout.spec.ts             # Header/footer presence, footer links
+│   ├── navigation.spec.ts         # Route loading, 404s, header nav, mobile menu
+│   ├── newsletter.spec.ts         # Form visibility, validation, link navigation
+│   └── venues.spec.ts             # Venue directory + detail pages
+├── public/                        # Static assets
 │   ├── favicon.svg
-│   ├── robots.txt           # Generated by pnpm seo:generate
-│   └── sitemap.xml          # Generated by pnpm seo:generate
-├── playwright.config.ts     # Playwright: Chromium, Firefox, WebKit + mobile
-├── wrangler.jsonc           # Cloudflare config
-├── vite.config.ts           # Vite + TanStack Start + Cloudflare plugin
+│   ├── robots.txt                 # Generated by pnpm seo:generate
+│   └── sitemap.xml                # Generated by pnpm seo:generate
+├── playwright.config.ts           # Playwright: 5 projects (desktop + mobile)
+├── vitest.config.ts               # Vitest: unit tests in src/**/*.test.{ts,tsx}
+├── wrangler.jsonc                 # Cloudflare config with D1 binding
+├── vite.config.ts                 # Vite + TanStack Start + Cloudflare plugin
 └── package.json
 ```
 
@@ -130,7 +143,7 @@ pnpm build
 # Build with an explicit canonical URL
 VITE_SITE_URL=https://theholstonroad.codyboring.workers.dev pnpm build
 
-# Run unit tests
+# Run unit tests (Vitest)
 pnpm test
 
 # Run e2e tests (Chromium, Firefox, WebKit + mobile viewports)
@@ -142,9 +155,38 @@ pnpm deploy
 
 ---
 
-## E2E Testing
+## Scripts Reference
 
-The project has a comprehensive Playwright test suite covering all routes across desktop and mobile viewports:
+| Script | Purpose |
+|--------|---------|
+| `pnpm dev` | Start local dev server on port 3000 |
+| `pnpm build` | Generate SEO assets + Vite production build |
+| `pnpm preview` | Build + start local preview server |
+| `pnpm test` | Run unit tests (Vitest) |
+| `pnpm test:e2e` | Run Playwright e2e tests |
+| `pnpm deploy` | Full deploy pipeline: build → patch → wrangler deploy |
+| `pnpm patch-worker` | Run post-build patch script only |
+| `pnpm seo:generate` | Regenerate `public/robots.txt` + `public/sitemap.xml` |
+| `pnpm db:seed` | Run seed script against database |
+| `pnpm cf-typegen` | Generate Wrangler TypeScript types |
+
+---
+
+## Testing
+
+### Unit Tests (Vitest)
+
+Unit and component tests live in `src/**/*.test.{ts,tsx}` and run with Vitest + jsdom:
+
+```bash
+pnpm test
+```
+
+Configured in `vitest.config.ts` with `tsconfigPaths` for `#/*` alias support.
+
+### E2E Tests (Playwright)
+
+End-to-end tests cover all routes across desktop and mobile viewports:
 
 ```bash
 # Run all e2e tests (Chromium, Firefox, WebKit + mobile)
@@ -155,6 +197,9 @@ npx playwright test e2e/navigation.spec.ts
 
 # Run with UI mode for debugging
 npx playwright test --ui
+
+# Run against an already-running dev server
+PLAYWRIGHT_SKIP_WEBSERVER=1 pnpm test:e2e
 ```
 
 **Test coverage:**
@@ -168,7 +213,10 @@ npx playwright test --ui
 
 **Browsers tested:** Chromium (desktop), Firefox (desktop), WebKit/Safari (desktop), Chrome mobile (Pixel 5), Safari mobile (iPhone 12).
 
-Newsletter validation tests are skipped on WebKit due to a known Playwright automation quirk with React synthetic events in hydrated apps — the form works correctly for real Safari users.
+**Notes:**
+- Newsletter validation tests are skipped on WebKit due to a known Playwright automation quirk with React synthetic events in hydrated apps — the form works correctly for real Safari users.
+- The desktop nav visibility test is skipped on mobile viewports where the desktop nav is intentionally hidden.
+- DB routes are tested leniently (h1 visible check) because D1 bindings may not be injectable in local dev mode.
 
 ---
 
@@ -209,7 +257,7 @@ export function getDbBinding(params: unknown): D1Database {
 
 **Critical:** Pass the **full** `loaderArgs` object — do **not** destructure `context` from it. TanStack Start places the Cloudflare env at `loaderArgs.serverContext`, not `loaderArgs.context`.
 
-The newsletter write path is now implemented in `src/routes/api/subscribe.ts`, so `/api/subscribe` is owned by the app instead of being hard-coded inside the post-build worker patch.
+The newsletter write path is implemented in `src/routes/api/subscribe.ts`, so `/api/subscribe` is owned by the app instead of being hard-coded inside the post-build worker patch.
 
 This is integrated into the deploy script:
 
@@ -240,7 +288,11 @@ All IDs use **ULID** (via `ulidx`), not auto-increment or UUID v4.
 
 ### Seeding
 
-Seed data lives in `src/db/seeds/holston-road.ts`. It was applied to the remote D1 via a custom seed runner. To re-seed or update data, modify the seed file and run the seed script against the remote database.
+Seed data lives in `src/db/seeds/holston-road.ts`. It was applied to the remote D1 via a custom seed runner. To re-seed or update data:
+
+```bash
+pnpm db:seed
+```
 
 ### Adding a New Table
 
@@ -285,8 +337,8 @@ head: ({ loaderData }) =>
 
 ### Newsletter ("The Back Porch Dispatch")
 
-Frontend signup form on the homepage. Backend API at `/api/subscribe` is an app-owned TanStack server route and handles:
-- Email validation
+Frontend signup form using `react-hook-form` + `zod` validation. Backend API at `/api/subscribe` is an app-owned TanStack server route and handles:
+- Email validation (zod schema)
 - Duplicate detection (per trail)
 - D1 insertion into `subscribers` table with ULID IDs
 
@@ -294,11 +346,11 @@ Frontend signup form on the homepage. Backend API at `/api/subscribe` is an app-
 
 ### Guides
 
-The site now includes an editorial **Guides** surface built for high-intent 2026 search and trip-planning traffic:
+Editorial **Guides** surface built for high-intent search and trip-planning traffic:
 - `/guides` hub page for launch-ready planning content
 - `/guides/$slug` detail pages with JSON-LD, breadcrumbs, and internal linking
-- launch set includes:
-  - weekend country music itinerary
+- Launch set includes:
+  - Weekend country music itinerary
   - Bristol Sessions history guide
   - Johnson City live roots music guide
 
@@ -306,11 +358,11 @@ Guide pages are defined in `src/logic/guides.ts` and rendered through reusable g
 
 ### Route Preview Map
 
-`/the-trail` now uses `TrailRouteExperience` for a polished route-preview experience:
-- clickable regional hubs
+`/the-trail` uses `TrailRouteExperience` for a polished route-preview experience:
+- Clickable regional hubs
 - SVG route canvas
-- synced venue discovery panel
-- direct Google Maps handoff for hubs and lead stops
+- Synced venue discovery panel
+- Direct Google Maps handoff for hubs and lead stops
 
 It is intentionally a map-like MVP built on current data. A true geospatial map layer can replace the SVG once venue coordinates are available.
 
@@ -421,6 +473,7 @@ The `scripts/patch-worker-entry.js` script **must run** between `vite build` and
 - [x] Error handling — NotFoundPage, ErrorPage, LoadingSpinner, `notFound()` pattern
 - [x] TypeScript — zero errors on build
 - [x] E2E test suite — Playwright coverage across all routes (Chromium, Firefox, WebKit, mobile)
+- [x] Unit test infrastructure — Vitest + jsdom + React Testing Library
 
 ### Phase 2: Experience
 - [ ] Real venue photography (replace SVG placeholders)

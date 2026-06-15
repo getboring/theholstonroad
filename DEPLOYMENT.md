@@ -79,11 +79,33 @@ name                slug
 The Holston Road    holston-road
 ```
 
-If the trail is missing, re-run the seed script against the remote database.
+If the trail is missing, re-run the seed script against the remote database:
+
+```bash
+pnpm db:seed
+```
 
 ---
 
-## 3. Deploy
+## 3. Run E2E Tests
+
+Run the full Playwright suite against the local dev server to catch regressions before deploying:
+
+```bash
+pnpm test:e2e
+```
+
+Expected: all tests pass or skip (newsletter validation skips on WebKit due to a known Playwright automation quirk). If any test fails, fix before deploying.
+
+To run tests against a specific browser:
+
+```bash
+npx playwright test --project=chromium-desktop
+```
+
+---
+
+## 4. Deploy
 
 ### Standard deploy (recommended)
 
@@ -109,18 +131,6 @@ npx wrangler deploy
 
 ---
 
-## 4. Run E2E Tests Before Deploy
-
-Run the full Playwright suite against the local dev server to catch regressions before deploying:
-
-```bash
-pnpm test:e2e
-```
-
-Expected: all tests pass or skip (newsletter validation skips on WebKit due to a known Playwright automation quirk). If any test fails, fix before deploying.
-
----
-
 ## 5. Verify Deployment
 
 ### All pages
@@ -129,9 +139,10 @@ Expected: all tests pass or skip (newsletter validation skips on WebKit due to a
 BASE="https://theholstonroad.codyboring.workers.dev"
 for route in "" "the-trail" "sites" "sites/birthplace-of-country-music-museum" \
   "events" "stories" "about" "guides" "guides/bristol-sessions-guide" \
+  "guides/weekend-country-music-itinerary" \
   "chapters/the-sound" "chapters/the-railroad" "chapters/the-sessions" \
   "chapters/the-festival" "chapters/the-next-generation"; do
-  curl -s -o /dev/null -w "$route: %{http_code}\n" "$BASE/$route"
+  curl -s -L -o /dev/null -w "$route: %{http_code}\n" "$BASE/$route"
 done
 ```
 
@@ -328,3 +339,13 @@ The `@cloudflare/vite-plugin` generates `dist/server/wrangler.json` during build
 Running `wrangler deploy` directly after `pnpm build` is not enough. CI must also run
 `pnpm patch-worker` (or `node scripts/patch-worker-entry.js`) because the patch is not part of
 Wrangler's deploy command.
+
+### E2E test failures
+
+If `pnpm test:e2e` fails with timeout errors, check that the dev server is not already running on port 3000. Playwright starts its own dev server via `webServer` config. Kill any existing `vite dev` processes:
+
+```bash
+pkill -f "vite dev"
+```
+
+If WebKit newsletter validation tests fail, this is expected — they are skipped automatically.
