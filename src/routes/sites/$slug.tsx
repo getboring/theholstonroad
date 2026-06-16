@@ -1,7 +1,16 @@
-import { createFileRoute, notFound, Link } from '@tanstack/react-router'
-import { format, isAfter, startOfDay } from 'date-fns'
-import { MapPin, Phone, Globe, Clock, ArrowLeft, Calendar } from 'lucide-react'
-import { getHolstonRoadEvents, getHolstonRoadVenueBySlug, getHolstonRoadVenues } from '../../db/queries'
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { format, isAfter, startOfDay } from "date-fns";
+import { ArrowLeft, Calendar, Clock, Globe, MapPin, Phone } from "lucide-react";
+import ErrorPage from "../../components/ErrorPage";
+import NotFoundPage from "../../components/NotFoundPage";
+import VenuePlaceholder from "../../components/VenuePlaceholder";
+import {
+	getHolstonRoadEvents,
+	getHolstonRoadVenueBySlug,
+	getHolstonRoadVenues,
+} from "../../db/queries";
+import { getDbBinding } from "../../lib/db-binding";
+import { createPageHead } from "../../lib/seo";
 import {
 	enrichEvents,
 	formatVenueTypeLabel,
@@ -9,69 +18,66 @@ import {
 	getVenueEvents,
 	getVenueHistory,
 	getVenueHours,
-} from '../../logic/planning'
-import { getDbBinding } from '../../lib/db-binding'
-import VenuePlaceholder from '../../components/VenuePlaceholder'
-import NotFoundPage from '../../components/NotFoundPage'
-import ErrorPage from '../../components/ErrorPage'
-import { createPageHead } from '../../lib/seo'
+} from "../../logic/planning";
 
-export const Route = createFileRoute('/sites/$slug')({
+export const Route = createFileRoute("/sites/$slug")({
 	component: SiteDetailPage,
 	loader: async (loaderArgs) => {
 		const [venue, venues, events] = await Promise.all([
 			getHolstonRoadVenueBySlug(getDbBinding(loaderArgs), loaderArgs.params.slug),
 			getHolstonRoadVenues(getDbBinding(loaderArgs)),
 			getHolstonRoadEvents(getDbBinding(loaderArgs)),
-		])
+		]);
 
 		if (!venue) {
-			throw notFound()
+			throw notFound();
 		}
 
-		return { venue, venues, events }
+		return { venue, venues, events };
 	},
 	head: ({ loaderData }) =>
 		createPageHead({
-			title: loaderData ? `${loaderData.venue.name} — The Holston Road` : 'Venue — The Holston Road',
-			description: loaderData?.venue.shortDescription || loaderData?.venue.description || '',
-			path: loaderData ? `/sites/${loaderData.venue.slug}` : '/sites',
+			title: loaderData
+				? `${loaderData.venue.name} — The Holston Road`
+				: "Venue — The Holston Road",
+			description: loaderData?.venue.shortDescription || loaderData?.venue.description || "",
+			path: loaderData ? `/sites/${loaderData.venue.slug}` : "/sites",
 		}),
 	notFoundComponent: NotFoundPage,
 	errorComponent: ({ error }) => <ErrorPage error={error as Error} />,
-})
+});
 
 function SiteDetailPage() {
-	const { venue, venues, events } = Route.useLoaderData()
-	const today = startOfDay(new Date())
-	const eventDetails = enrichEvents(events, venues)
+	const { venue, venues, events } = Route.useLoaderData();
+	const today = startOfDay(new Date());
+	const eventDetails = enrichEvents(events, venues);
 	const relatedEvents = getVenueEvents(venue, eventDetails).sort(
-		(left, right) => new Date(left.event.startDate).getTime() - new Date(right.event.startDate).getTime(),
-	)
-	const recurringEvents = relatedEvents.filter(({ event }) => event.isRecurring)
+		(left, right) =>
+			new Date(left.event.startDate).getTime() - new Date(right.event.startDate).getTime(),
+	);
+	const recurringEvents = relatedEvents.filter(({ event }) => event.isRecurring);
 	const upcomingEvents = relatedEvents.filter(
-		({ event }) =>
-			!event.isRecurring && isAfter(new Date(event.endDate ?? event.startDate), today),
-	)
+		({ event }) => !event.isRecurring && isAfter(new Date(event.endDate ?? event.startDate), today),
+	);
 	const nearbyVenues = venues
 		.filter((candidate) => candidate.id !== venue.id && candidate.city === venue.city)
-		.slice(0, 3)
+		.slice(0, 3);
 	const cityEvents = eventDetails
 		.filter(
 			(eventDetail) =>
 				eventDetail.planningCity === venue.city && eventDetail.linkedVenue?.id !== venue.id,
 		)
 		.filter(({ event }) => isAfter(new Date(event.endDate ?? event.startDate), today))
-		.slice(0, 3)
-	const history = getVenueHistory(venue)
-	const capacity = getVenueCapacity(venue)
-	const hours = getVenueHours(venue)
+		.slice(0, 3);
+	const history = getVenueHistory(venue);
+	const capacity = getVenueCapacity(venue);
+	const hours = getVenueHours(venue);
 	const directionsTarget =
 		venue.latitude && venue.longitude
 			? `${venue.latitude},${venue.longitude}`
 			: venue.address
 				? encodeURIComponent(venue.address)
-				: null
+				: null;
 
 	return (
 		<main>
@@ -91,7 +97,7 @@ function SiteDetailPage() {
 							<span className="flex items-center gap-1">
 								<MapPin className="h-4 w-4" />
 								{venue.city}
-								{venue.state ? `, ${venue.state}` : ''}
+								{venue.state ? `, ${venue.state}` : ""}
 							</span>
 							<span className="rounded-full bg-burgundy-800/80 px-3 py-1 text-xs font-medium backdrop-blur">
 								{formatVenueTypeLabel(venue.type)}
@@ -113,7 +119,7 @@ function SiteDetailPage() {
 							<div className="rounded-2xl border border-stone-200 bg-white p-6">
 								<h2 className="mb-4 font-display text-xl font-bold text-stone-900">About</h2>
 								<p className="leading-relaxed text-stone-700">
-									{venue.description || venue.shortDescription || 'No description available.'}
+									{venue.description || venue.shortDescription || "No description available."}
 								</p>
 							</div>
 
@@ -156,7 +162,7 @@ function SiteDetailPage() {
 														{event.name}
 													</h3>
 													<span className="rounded-full bg-burgundy-100 px-2.5 py-0.5 text-xs font-medium text-burgundy-800">
-														{event.isRecurring ? 'Recurring' : 'Upcoming'}
+														{event.isRecurring ? "Recurring" : "Upcoming"}
 													</span>
 												</div>
 												<p className="mt-2 text-sm text-stone-600">{event.description}</p>
@@ -164,8 +170,8 @@ function SiteDetailPage() {
 													<span className="flex items-center gap-1">
 														<Calendar className="h-3.5 w-3.5" />
 														{event.isRecurring
-															? format(new Date(event.startDate), 'EEEE • h:mm a')
-															: format(new Date(event.startDate), 'EEEE, MMMM d, yyyy')}
+															? format(new Date(event.startDate), "EEEE • h:mm a")
+															: format(new Date(event.startDate), "EEEE, MMMM d, yyyy")}
 													</span>
 													{event.admission && (
 														<span className="font-medium text-green-700">{event.admission}</span>
@@ -207,10 +213,7 @@ function SiteDetailPage() {
 									{venue.phone && (
 										<div className="flex items-center gap-2 text-sm text-stone-600">
 											<Phone className="h-4 w-4 shrink-0 text-stone-400" />
-											<a
-												href={`tel:${venue.phone}`}
-												className="transition hover:text-burgundy-700"
-											>
+											<a href={`tel:${venue.phone}`} className="transition hover:text-burgundy-700">
 												{venue.phone}
 											</a>
 										</div>
@@ -224,7 +227,7 @@ function SiteDetailPage() {
 												rel="noopener noreferrer"
 												className="truncate transition hover:text-burgundy-700"
 											>
-												{venue.website.replace(/^https?:\/\//, '')}
+												{venue.website.replace(/^https?:\/\//, "")}
 											</a>
 										</div>
 									)}
@@ -286,9 +289,7 @@ function SiteDetailPage() {
 
 							{nearbyVenues.length > 0 && (
 								<div className="rounded-2xl border border-stone-200 bg-white p-5">
-									<h3 className="mb-3 font-semibold text-stone-900">
-										More stops in {venue.city}
-									</h3>
+									<h3 className="mb-3 font-semibold text-stone-900">More stops in {venue.city}</h3>
 									<div className="flex flex-col gap-3">
 										{nearbyVenues.map((nearbyVenue) => (
 											<Link
@@ -329,5 +330,5 @@ function SiteDetailPage() {
 				</div>
 			</section>
 		</main>
-	)
+	);
 }

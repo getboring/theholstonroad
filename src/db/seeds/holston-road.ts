@@ -3,7 +3,7 @@
  * Tenant #2 for the Trailhead platform. Independent from The Crooked Road.
  */
 
-import { ulid } from "ulidx"
+import { ulid } from "ulidx";
 
 // =============================================================================
 // TRAIL
@@ -28,9 +28,9 @@ export const trail = {
 		mission:
 			"To connect travelers with the living musical heritage of Northeast Tennessee — where Appalachian tradition meets the next generation of sound.",
 	},
-}
+};
 
-const trailId = trail.id
+const trailId = trail.id;
 
 // =============================================================================
 // MAJOR VENUES — Music Heritage
@@ -51,9 +51,16 @@ export const majorVenues = [
 		address: "101 Country Music Way, Bristol, VA/TN 24201",
 		phone: "423-573-1927",
 		website: "https://birthplaceofcountrymusic.org",
-		features: ["Museum", "Recording Studio", "Radio Bristol", "Live Performances", "Smithsonian Affiliate"],
+		features: [
+			"Museum",
+			"Recording Studio",
+			"Radio Bristol",
+			"Live Performances",
+			"Smithsonian Affiliate",
+		],
 		metadata: {
-			history: "The 1927 Bristol Sessions recorded Jimmie Rodgers and the Carter Family. Congress designated Bristol the 'Birthplace of Country Music' in 1998.",
+			history:
+				"The 1927 Bristol Sessions recorded Jimmie Rodgers and the Carter Family. Congress designated Bristol the 'Birthplace of Country Music' in 1998.",
 			capacity: 200,
 		},
 	},
@@ -71,9 +78,16 @@ export const majorVenues = [
 		address: "ETSU Center for Appalachian Studies and Services, Johnson City, TN 37614",
 		phone: "423-439-6075",
 		website: "https://www.etsu.edu/cas/music",
-		features: ["Degree Program", "Live Performances", "Master Classes", "Appalachian Studies", "Recording Facilities"],
+		features: [
+			"Degree Program",
+			"Live Performances",
+			"Master Classes",
+			"Appalachian Studies",
+			"Recording Facilities",
+		],
 		metadata: {
-			history: "Founded to preserve Appalachian musical heritage through higher education. The only program of its kind worldwide.",
+			history:
+				"Founded to preserve Appalachian musical heritage through higher education. The only program of its kind worldwide.",
 		},
 	},
 	{
@@ -90,9 +104,16 @@ export const majorVenues = [
 		address: "101 Country Music Way, Bristol, VA/TN 24201",
 		phone: "423-573-1927",
 		website: "https://birthplaceofcountrymusic.org/radio-bristol",
-		features: ["Radio Station", "Live Broadcasts", "Farm and Fun Time", "Online Streaming", "In-Studio Performances"],
+		features: [
+			"Radio Station",
+			"Live Broadcasts",
+			"Farm and Fun Time",
+			"Online Streaming",
+			"In-Studio Performances",
+		],
 		metadata: {
-			history: "Launched by the Birthplace of Country Music Museum to celebrate and preserve the region's musical heritage through broadcasting.",
+			history:
+				"Launched by the Birthplace of Country Music Museum to celebrate and preserve the region's musical heritage through broadcasting.",
 		},
 	},
 	{
@@ -109,9 +130,16 @@ export const majorVenues = [
 		address: "300 W Main St, Johnson City, TN 37604",
 		phone: "423-929-9821",
 		website: "https://thedownhome.com",
-		features: ["Listening Room", "Intimate Venue", "Acoustic Music", "Local Artists", "National Acts"],
+		features: [
+			"Listening Room",
+			"Intimate Venue",
+			"Acoustic Music",
+			"Local Artists",
+			"National Acts",
+		],
 		metadata: {
-			history: "Opened in 1976. Known for incredible acoustics and a strict no-talking policy during performances.",
+			history:
+				"Opened in 1976. Known for incredible acoustics and a strict no-talking policy during performances.",
 			capacity: 150,
 		},
 	},
@@ -131,7 +159,8 @@ export const majorVenues = [
 		website: "https://paramountarts.org",
 		features: ["Historic Theater", "Concerts", "Film", "Performing Arts", "Art Deco Architecture"],
 		metadata: {
-			history: "Built in the 1930s. Restored as a performing arts center. Hosts major concerts and serves as anchor for Bristol Rhythm & Roots Reunion.",
+			history:
+				"Built in the 1930s. Restored as a performing arts center. Hosts major concerts and serves as anchor for Bristol Rhythm & Roots Reunion.",
 			capacity: 700,
 		},
 	},
@@ -143,7 +172,8 @@ export const majorVenues = [
 		type: "major" as const,
 		description:
 			"Located just across the state line in Hiltons, Virginia, the Carter Family Fold honors the legacy of the First Family of Country Music. Saturday night shows feature old-time and bluegrass music in the same style the Carter Family played. Janette Carter's original general store and the original A.P. Carter cabin are also on site.",
-		shortDescription: "Saturday night old-time and bluegrass shows honoring the Carter Family legacy",
+		shortDescription:
+			"Saturday night old-time and bluegrass shows honoring the Carter Family legacy",
 		city: "Hiltons",
 		state: "VA",
 		address: "3449 AP Carter Hwy, Hiltons, VA 24258",
@@ -151,7 +181,8 @@ export const majorVenues = [
 		website: "https://carterfamilyfold.org",
 		features: ["Live Music", "Carter Family History", "Museum", "General Store", "Historic Cabin"],
 		metadata: {
-			history: "Founded by Janette Carter to preserve the musical legacy of the Carter Family. Saturday night shows continue the tradition.",
+			history:
+				"Founded by Janette Carter to preserve the musical legacy of the Carter Family. Saturday night shows continue the tradition.",
 			capacity: 800,
 		},
 	},
@@ -163,14 +194,16 @@ export const majorVenues = [
 		type: "major" as const,
 		description:
 			"An after-school program introducing children to traditional Appalachian music through instruction in instruments like fiddle, banjo, guitar, and mandolin. JAM programs across the region ensure the next generation carries forward the musical traditions of the mountains.",
-		shortDescription: "After-school program teaching Appalachian instruments to the next generation",
+		shortDescription:
+			"After-school program teaching Appalachian instruments to the next generation",
 		city: "Various",
 		state: "TN",
 		address: "Regional programs across Northeast Tennessee",
 		website: "https://jamkids.org",
 		features: ["Youth Education", "Fiddle", "Banjo", "Guitar", "Mandolin", "Traditional Music"],
 		metadata: {
-			history: "Founded to preserve Appalachian musical heritage by teaching traditional instruments to children.",
+			history:
+				"Founded to preserve Appalachian musical heritage by teaching traditional instruments to children.",
 		},
 	},
 	{
@@ -208,7 +241,7 @@ export const majorVenues = [
 			capacity: 80,
 		},
 	},
-]
+];
 
 // =============================================================================
 // WAYSIDE EXHIBITS — Music Story Chapters
@@ -228,11 +261,25 @@ export const waysides = [
 			narrative:
 				"The Tri-Cities sat at the intersection of America's deepest musical traditions. Appalachian ballads brought from the British Isles collided with spirituals from African American churches and blues from the Deep South. Bristol, on the Tennessee-Virginia border, was a crossroads. The railroad brought musicians from Appalachia, the Piedmont, and the Mississippi Delta. They traded songs, borrowed techniques, and created a new sound that didn't exist anywhere else. The Carter Family learned their songs from old British ballads and church hymns. Jimmie Rodgers blended blues yodeling with mountain lyrics. The result was a music that sounded like America.",
 			historicalFigures: [
-				{ name: "The Carter Family", description: "A.P., Sara, and Maybelle Carter recorded at the 1927 Bristol Sessions. Their songs drew from old British ballads and church hymns, creating the foundation of country music." },
-				{ name: "Jimmie Rodgers", description: "The 'Father of Country Music' blended blues yodeling with mountain lyrics. Recorded at the 1927 Bristol Sessions and became the genre's first superstar." },
+				{
+					name: "The Carter Family",
+					description:
+						"A.P., Sara, and Maybelle Carter recorded at the 1927 Bristol Sessions. Their songs drew from old British ballads and church hymns, creating the foundation of country music.",
+				},
+				{
+					name: "Jimmie Rodgers",
+					description:
+						"The 'Father of Country Music' blended blues yodeling with mountain lyrics. Recorded at the 1927 Bristol Sessions and became the genre's first superstar.",
+				},
 			],
-			nearbyAttractions: ["Birthplace of Country Music Museum", "Carter Family Fold", "Down Home", "ETSU Bluegrass Program"],
-			quote: "The Carter Family learned their songs from old British ballads and church hymns. Jimmie Rodgers blended blues yodeling with mountain lyrics.",
+			nearbyAttractions: [
+				"Birthplace of Country Music Museum",
+				"Carter Family Fold",
+				"Down Home",
+				"ETSU Bluegrass Program",
+			],
+			quote:
+				"The Carter Family learned their songs from old British ballads and church hymns. Jimmie Rodgers blended blues yodeling with mountain lyrics.",
 		},
 		isVirtual: false,
 	},
@@ -249,11 +296,24 @@ export const waysides = [
 			narrative:
 				"When the railroad arrived in the Tri-Cities in 1856, it changed everything. But not in the way most people think. Yes, it brought commerce and passengers. But it also brought musicians — traveling performers, bluesmen from the Delta, Piedmont string bands, Appalachian ballad singers. They met at depots, in rail yards, and in boarding houses. They traded songs across racial lines in a way that was rare for the era. By the early 1900s, phonograph records and radio began spreading this mountain sound nationwide. The musicians who rode those rails created a genre that would eventually be called country music.",
 			historicalFigures: [
-				{ name: "Ralph Peer", description: "Victor Records talent scout who set up a temporary recording studio in Bristol in 1927, creating the 'big bang of country music.'" },
-				{ name: "Ernest Stoneman", description: "A native of Carroll County, Virginia, who recorded at the Bristol Sessions and helped convince Ralph Peer to come to Bristol." },
+				{
+					name: "Ralph Peer",
+					description:
+						"Victor Records talent scout who set up a temporary recording studio in Bristol in 1927, creating the 'big bang of country music.'",
+				},
+				{
+					name: "Ernest Stoneman",
+					description:
+						"A native of Carroll County, Virginia, who recorded at the Bristol Sessions and helped convince Ralph Peer to come to Bristol.",
+				},
 			],
-			nearbyAttractions: ["Birthplace of Country Music Museum", "Paramount Center for the Arts", "Radio Bristol"],
-			quote: "The railroad brought musicians from Appalachia, the Piedmont, and the Mississippi Delta. They traded songs, borrowed techniques, and created a new sound.",
+			nearbyAttractions: [
+				"Birthplace of Country Music Museum",
+				"Paramount Center for the Arts",
+				"Radio Bristol",
+			],
+			quote:
+				"The railroad brought musicians from Appalachia, the Piedmont, and the Mississippi Delta. They traded songs, borrowed techniques, and created a new sound.",
 		},
 		isVirtual: false,
 	},
@@ -270,12 +330,29 @@ export const waysides = [
 			narrative:
 				"In July and August of 1927, Ralph Peer set up a temporary recording studio in a converted hat warehouse at 408 State Street in Bristol, Tennessee. He had a microphone, a disc-cutting machine, and a hunch that rural musicians had commercial potential. Over twelve days, Peer recorded nineteen acts. The Carter Family walked in with songs learned from old ballads and church hymns. Jimmie Rodgers brought a yodel and a blues sensibility that nobody had heard before. Ernest Stoneman, Blind Alfred Reed, and a dozen others added their own sounds to the mix. When the dust settled, Peer had the foundation of an industry. Johnny Cash said it best: 'The Bristol Sessions were the single most important event in the history of country music.' Congress made it official in 1998, designating Bristol the 'Birthplace of Country Music.'",
 			historicalFigures: [
-				{ name: "Ralph Peer", description: "Set up the recording studio in Bristol in 1927 and recorded the artists who would become the foundation of country music." },
-				{ name: "Maybelle Carter", description: "Revolutionized guitar playing with her 'Carter Scratch' technique. Her innovative style influenced generations of guitarists." },
-				{ name: "Blind Alfred Reed", description: "Recorded 'The Wreck of the Virginian' at the Bristol Sessions. A fiddle player and singer who addressed social issues in his music." },
+				{
+					name: "Ralph Peer",
+					description:
+						"Set up the recording studio in Bristol in 1927 and recorded the artists who would become the foundation of country music.",
+				},
+				{
+					name: "Maybelle Carter",
+					description:
+						"Revolutionized guitar playing with her 'Carter Scratch' technique. Her innovative style influenced generations of guitarists.",
+				},
+				{
+					name: "Blind Alfred Reed",
+					description:
+						"Recorded 'The Wreck of the Virginian' at the Bristol Sessions. A fiddle player and singer who addressed social issues in his music.",
+				},
 			],
-			nearbyAttractions: ["Birthplace of Country Music Museum", "Paramount Center for the Arts", "State Street"],
-			quote: "The Bristol Sessions were the single most important event in the history of country music. — Johnny Cash",
+			nearbyAttractions: [
+				"Birthplace of Country Music Museum",
+				"Paramount Center for the Arts",
+				"State Street",
+			],
+			quote:
+				"The Bristol Sessions were the single most important event in the history of country music. — Johnny Cash",
 		},
 		isVirtual: false,
 	},
@@ -292,11 +369,25 @@ export const waysides = [
 			narrative:
 				"The Bristol Rhythm & Roots Reunion is more than a festival. It's a living tribute to the 1927 Bristol Sessions. Every September, 50,000 people gather on State Street — the historic line between Tennessee and Virginia — to hear 120+ acts across 20+ stages. The festival features roots, Americana, bluegrass, and country music in the same venues where the original sessions took place. From the Paramount Theater to outdoor stages on State Street, the Reunion proves that the sound born here nearly a century ago is still alive, still evolving, and still drawing people from across the country.",
 			historicalFigures: [
-				{ name: "Leah Ross", description: "Executive director who helped grow Bristol Rhythm & Roots Reunion into one of the premier roots music festivals in the Southeast." },
-				{ name: "Bristol Sessions Artists", description: "The 19 acts recorded by Ralph Peer in 1927, including the Carter Family and Jimmie Rodgers, whose legacy the festival celebrates each year." },
+				{
+					name: "Leah Ross",
+					description:
+						"Executive director who helped grow Bristol Rhythm & Roots Reunion into one of the premier roots music festivals in the Southeast.",
+				},
+				{
+					name: "Bristol Sessions Artists",
+					description:
+						"The 19 acts recorded by Ralph Peer in 1927, including the Carter Family and Jimmie Rodgers, whose legacy the festival celebrates each year.",
+				},
 			],
-			nearbyAttractions: ["Paramount Center for the Arts", "Birthplace of Country Music Museum", "State Street", "Radio Bristol"],
-			quote: "50,000 people gather on State Street to hear 120+ acts across 20+ stages. The sound born here nearly a century ago is still alive.",
+			nearbyAttractions: [
+				"Paramount Center for the Arts",
+				"Birthplace of Country Music Museum",
+				"State Street",
+				"Radio Bristol",
+			],
+			quote:
+				"50,000 people gather on State Street to hear 120+ acts across 20+ stages. The sound born here nearly a century ago is still alive.",
 		},
 		isVirtual: false,
 	},
@@ -313,15 +404,29 @@ export const waysides = [
 			narrative:
 				"East Tennessee State University is home to the only four-year degree program in Bluegrass, Old Time, and Country Music in the world. Students come from across the country — and the world — to study under master musicians. They learn old-time fiddle, bluegrass banjo, flatpicking guitar, and traditional singing. But they also write new songs, form new bands, and record new albums. The program's graduates perform at the Grand Ole Opry, win Grammy awards, and teach the next generation. Meanwhile, Junior Appalachian Musicians (JAM) programs across the region introduce children to traditional instruments. The sound that started on front porches a century ago is being passed to new hands.",
 			historicalFigures: [
-				{ name: "Dr. Ron Roach", description: "Director of ETSU's Bluegrass, Old Time and Country Music program, preserving and advancing Appalachian musical traditions through higher education." },
-				{ name: "Janette Carter", description: "Daughter of A.P. and Sara Carter who founded the Carter Family Fold to preserve her family's musical legacy for future generations." },
+				{
+					name: "Dr. Ron Roach",
+					description:
+						"Director of ETSU's Bluegrass, Old Time and Country Music program, preserving and advancing Appalachian musical traditions through higher education.",
+				},
+				{
+					name: "Janette Carter",
+					description:
+						"Daughter of A.P. and Sara Carter who founded the Carter Family Fold to preserve her family's musical legacy for future generations.",
+				},
 			],
-			nearbyAttractions: ["ETSU Bluegrass Program", "Down Home", "Carter Family Fold", "Junior Appalachian Musicians"],
-			quote: "The only four-year degree program of its kind in the world. Students learn from master musicians on authentic instruments in the heart of bluegrass country.",
+			nearbyAttractions: [
+				"ETSU Bluegrass Program",
+				"Down Home",
+				"Carter Family Fold",
+				"Junior Appalachian Musicians",
+			],
+			quote:
+				"The only four-year degree program of its kind in the world. Students learn from master musicians on authentic instruments in the heart of bluegrass country.",
 		},
 		isVirtual: false,
 	},
-]
+];
 
 // =============================================================================
 // RECURRING EVENTS — Music Jams, Sessions, and Regular Shows
@@ -417,7 +522,7 @@ export const recurringEvents = [
 			contactPhone: "423-439-6075",
 		},
 	},
-]
+];
 
 // =============================================================================
 // SPECIAL EVENTS — Festivals and Annual Celebrations
@@ -507,7 +612,7 @@ export const specialEvents = [
 			performers: ["Local and regional acts"],
 		},
 	},
-]
+];
 
 // =============================================================================
 // DMO CONTACTS
@@ -515,19 +620,91 @@ export const specialEvents = [
 
 export const dmoContacts = [
 	// West Zone (Sullivan County / Bristol / Kingsport)
-	{ id: ulid(), trailId, name: "Visit Kingsport", zone: "west" as const, phone: "423-343-9145", website: "https://visitkingsport.com", city: "Kingsport" },
-	{ id: ulid(), trailId, name: "Discover Bristol", zone: "west" as const, phone: "423-989-4850", website: "https://discoverbristol.org", city: "Bristol" },
-	{ id: ulid(), trailId, name: "Sullivan County Tourism", zone: "west" as const, phone: "423-323-1897", website: "https://visitsullivancountytn.com", city: "Blountville" },
+	{
+		id: ulid(),
+		trailId,
+		name: "Visit Kingsport",
+		zone: "west" as const,
+		phone: "423-343-9145",
+		website: "https://visitkingsport.com",
+		city: "Kingsport",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Discover Bristol",
+		zone: "west" as const,
+		phone: "423-989-4850",
+		website: "https://discoverbristol.org",
+		city: "Bristol",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Sullivan County Tourism",
+		zone: "west" as const,
+		phone: "423-323-1897",
+		website: "https://visitsullivancountytn.com",
+		city: "Blountville",
+	},
 
 	// Central Zone (Johnson City / Washington County)
-	{ id: ulid(), trailId, name: "Visit Johnson City", zone: "central" as const, phone: "423-434-6294", website: "https://visitjohnsoncitytn.com", city: "Johnson City" },
-	{ id: ulid(), trailId, name: "Washington County Tourism", zone: "central" as const, phone: "423-753-0203", website: "https://washingtoncountytn.org", city: "Jonesborough" },
+	{
+		id: ulid(),
+		trailId,
+		name: "Visit Johnson City",
+		zone: "central" as const,
+		phone: "423-434-6294",
+		website: "https://visitjohnsoncitytn.com",
+		city: "Johnson City",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Washington County Tourism",
+		zone: "central" as const,
+		phone: "423-753-0203",
+		website: "https://washingtoncountytn.org",
+		city: "Jonesborough",
+	},
 
 	// East Zone (Elizabethton / Carter County)
-	{ id: ulid(), trailId, name: "Carter County Tourism", zone: "east" as const, phone: "423-547-3850", website: "https://cartercountytn.gov", city: "Elizabethton" },
-	{ id: ulid(), trailId, name: "Elizabethton-Carter County Chamber", zone: "east" as const, phone: "423-543-2122", website: "https://elizabethtonchamber.com", city: "Elizabethton" },
+	{
+		id: ulid(),
+		trailId,
+		name: "Carter County Tourism",
+		zone: "east" as const,
+		phone: "423-547-3850",
+		website: "https://cartercountytn.gov",
+		city: "Elizabethton",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Elizabethton-Carter County Chamber",
+		zone: "east" as const,
+		phone: "423-543-2122",
+		website: "https://elizabethtonchamber.com",
+		city: "Elizabethton",
+	},
 
 	// North Zone (Virginia border / Abingdon)
-	{ id: ulid(), trailId, name: "Abingdon CVB", zone: "north" as const, phone: "276-676-2282", website: "https://visitabingdonvirginia.com", city: "Abingdon" },
-	{ id: ulid(), trailId, name: "Washington County VA Tourism", zone: "north" as const, phone: "276-676-2282", website: "https://washingtoncountyva.com", city: "Abingdon" },
-]
+	{
+		id: ulid(),
+		trailId,
+		name: "Abingdon CVB",
+		zone: "north" as const,
+		phone: "276-676-2282",
+		website: "https://visitabingdonvirginia.com",
+		city: "Abingdon",
+	},
+	{
+		id: ulid(),
+		trailId,
+		name: "Washington County VA Tourism",
+		zone: "north" as const,
+		phone: "276-676-2282",
+		website: "https://washingtoncountyva.com",
+		city: "Abingdon",
+	},
+];

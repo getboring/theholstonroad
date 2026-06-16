@@ -33,9 +33,7 @@ export default function Header() {
 					className="flex items-center gap-2 rounded-lg px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-600 focus-visible:ring-offset-2"
 				>
 					<Music className="h-6 w-6 text-burgundy-700" />
-					<span className="text-lg font-bold tracking-tight text-stone-900">
-						The Holston Road
-					</span>
+					<span className="text-lg font-bold tracking-tight text-stone-900">The Holston Road</span>
 				</Link>
 
 				<nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
@@ -61,7 +59,7 @@ export default function Header() {
 					</Link>
 				</nav>
 
-				<details className="relative md:hidden" open={false}>
+				<details className="relative md:hidden" >
 					<summary
 						className="list-none rounded-lg p-2 text-stone-700 transition hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-burgundy-600 focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden"
 						aria-controls="mobile-menu"
